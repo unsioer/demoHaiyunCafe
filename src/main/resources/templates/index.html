@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Haiyun Cafe Admin</title>
+    <!-- Styles -->
+    <link href="assets/css/lib/calendar2/pignose.calendar.min.css" rel="stylesheet">
+    <link href="assets/css/lib/chartist/chartist.min.css" rel="stylesheet">
+    <link href="assets/css/lib/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/lib/themify-icons.css" rel="stylesheet">
+    <link href="assets/css/lib/owl.carousel.min.css" rel="stylesheet" />
+    <link href="assets/css/lib/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="assets/css/lib/weather-icons.css" rel="stylesheet" />
+    <link href="assets/css/lib/menubar/sidebar.css" rel="stylesheet">
+    <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/lib/helper.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<div th:replace="Common/sidebar::sidebar"></div>
+<div th:replace="Common/header::header"></div>
+<div class="content-wrap">
+    <div class="main">
+        <div class="container-fluid">
+            <section id="main-content">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-title">
+                                <h1 th:text="${message}" style="text-align:center">Message</h1>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <td style="text-align:center">商品名称</td>
+                                            <td style="text-align:center">进货时间</td>
+                                            <td style="text-align:center">进货商</td>
+                                            <td style="text-align:center">剩余量</td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="product:${products}">
+                                            <td th:text="${product.name}" style="text-align:center"></td>
+                                            <td th:text="${product.date}" style="text-align:center"></td>
+                                            <td th:text="${product.place}" style="text-align:center"></td>
+                                            <td th:text="${product.left}" style="text-align:center"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Task</h4>
+                            </div>
+                            <div class="todo-list">
+                                <div class="tdl-holder">
+                                    <div class="tdl-content">
+                                        <ul>
+                                            <li th:each="task:${tasks}">
+                                                <label>
+                                                    <input type="checkbox" th:checked="${task.status}" onclick="">
+                                                    <i></i>
+                                                    <span th:text="${task.description}">TaskDescription</span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <input type="text" class="tdl-new form-control" placeholder="Write new item and hit 'Enter'...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="year-calendar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Notice Board </h4>
+
+                            </div>
+                            <div class="recent-comment m-t-15">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="assets/images/avatar/1.jpg" alt="..."></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading color-primary">john doe</h4>
+                                        <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                                        <p class="comment-date">10 min ago</p>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="assets/images/avatar/2.jpg" alt="..."></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading color-success">Mr. John</h4>
+                                        <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                                        <p class="comment-date">1 hour ago</p>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="assets/images/avatar/3.jpg" alt="..."></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading color-danger">Mr. John</h4>
+                                        <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                                        <div class="comment-date">Yesterday</div>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="assets/images/avatar/1.jpg" alt="..."></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading color-primary">john doe</h4>
+                                        <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                                        <p class="comment-date">10 min ago</p>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="assets/images/avatar/2.jpg" alt="..."></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading color-success">Mr. John</h4>
+                                        <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                                        <p class="comment-date">1 hour ago</p>
+                                    </div>
+                                </div>
+                                <div class="media no-border">
+                                    <div class="media-left">
+                                        <a href="#"><img class="media-object" src="assets/images/avatar/3.jpg" alt="..."></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading color-info">Mr. John</h4>
+                                        <p>Cras sit amet nibh libero, in gravida nulla.</p>
+                                        <div class="comment-date">Yesterday</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /# card -->
+                    </div>
+                </div>
+                <!-- /# row -->
+                <div th:replace="Common/footer::footer"></div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<!-- jquery vendor -->
+<script src="assets/js/lib/jquery.min.js"></script>
+<script src="assets/js/lib/jquery.nanoscroller.min.js"></script>
+<!-- nano scroller -->
+<script src="assets/js/lib/menubar/sidebar.js"></script>
+<script src="assets/js/lib/preloader/pace.min.js"></script>
+<!-- sidebar -->
+
+<script src="assets/js/lib/bootstrap.min.js"></script>
+<script src="assets/js/scripts.js"></script>
+<!-- bootstrap -->
+
+<script src="assets/js/lib/calendar-2/moment.latest.min.js"></script>
+<script src="assets/js/lib/calendar-2/pignose.calendar.min.js"></script>
+<script src="assets/js/lib/calendar-2/pignose.init.js"></script>
+
+
+<script src="assets/js/lib/weather/jquery.simpleWeather.min.js"></script>
+<script src="assets/js/lib/weather/weather-init.js"></script>
+<script src="assets/js/lib/circle-progress/circle-progress.min.js"></script>
+<script src="assets/js/lib/circle-progress/circle-progress-init.js"></script>
+<script src="assets/js/lib/chartist/chartist.min.js"></script>
+<script src="assets/js/lib/sparklinechart/jquery.sparkline.min.js"></script>
+<script src="assets/js/lib/sparklinechart/sparkline.init.js"></script>
+<script src="assets/js/lib/owl-carousel/owl.carousel.min.js"></script>
+<script src="assets/js/lib/owl-carousel/owl.carousel-init.js"></script>
+<!-- script init-->
+<script src="assets/js/dashboard2.js"></script>
+</body>
+
+</html>

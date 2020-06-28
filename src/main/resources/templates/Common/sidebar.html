@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <head lang="en">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>sidebar</title>
+    </head>
+
+    <body>
+		<div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures" th:fragment="sidebar">
+            <div class="nano">
+                <div class="nano-content">
+                    <ul>
+                        <div class="logo">
+                            <span style="text-align:center">Hello Admin!</span>
+                            <br/>
+                            <span style="text-align:center">
+                                <span th:text="'第' + ${week} + '周'"></span>
+                                <span th:text="${weekday}"></span>
+                            </span>
+                        </div>
+						<li class="label">菜单</li>
+                        <li>
+							<a th:href="@{/}">
+								<i class="ti-home"></i> 主页
+							</a>
+                        </li>
+						<li><a class="sidebar-sub-toggle" th:href="@{/product}"><i class="ti-layout-grid4-alt"></i> 货物 <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                            <ul>
+                                <li><a th:href="@{/product}"> 货物一览 </a></li>
+                                <li><a th:href="@{/product/add}"> 添加货物 </a></li>
+                                <li><a th:href="@{/product/edit}"> 修改货物 </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
