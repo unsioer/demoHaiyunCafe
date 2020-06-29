@@ -13,14 +13,17 @@
 </head>
 
 <body class="text-center">
-<form class="form-signin" action="user/login" method="post">
+<form class="form-signin" th:action="@{/login}" method="post">
     <img class="mb-4" th:src="@{assets/img/bootstrap-solid.svg}" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <!--判断-->
+    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+
     <label class="sr-only">Username</label>
-    <input name="username" class="form-control" placeholder="Username" required="" autofocus="">
+    <input name="username" class="form-control" placeholder="Username" required="" autofocus="" >
     <br>
     <label class="sr-only">Password</label>
-    <input name="password" class="form-control" placeholder="Password" required="">
+    <input name="password" class="form-control" placeholder="Password" required="" type="password">
     <div class="checkbox mb-3">
         <label class="radio-inline"><input type="radio" name="optradio">User</label>
         <label class="radio-inline"><input type="radio" name="optradio">Admin</label>

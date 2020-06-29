@@ -13,14 +13,16 @@
 </head>
 
 <body class="text-center">
-<form class="form-signin" action="user/regist" method="post">
+<form class="form-signin" th:action="@{/regist}" method="post">
     <img class="mb-4" th:src="@{assets/img/bootstrap-solid.svg}" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
+    <!--判断-->
+    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
     <label class="sr-only">Username</label>
     <input name = "username" type="text" class="form-control" placeholder="Username" required="" autofocus="">
     <br>
     <label class="sr-only">Password</label>
-    <input name="password" class="form-control" placeholder="Password" required="">
+    <input name="password"  type="password" class="form-control" placeholder="Password" required="">
     <br>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 

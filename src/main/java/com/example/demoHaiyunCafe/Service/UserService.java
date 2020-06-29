@@ -54,7 +54,8 @@ public class UserService {
             Long userId= userMapper.login(user);
             if(userId == null){
                 result.setMsg("用户名或密码错误");
-            }else{
+            }
+            else{
                 result.setMsg("登录成功");
                 result.setSuccess(true);
                 user.setId(userId);

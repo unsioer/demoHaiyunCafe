@@ -15,7 +15,7 @@ public class IndexController {
         model.addAttribute("message","最近消息");
         //model.addAttribute("tasks",loadTaskData());
     }
-    @GetMapping("/")
+    @GetMapping("/index")
     public static String Index(Model model) {
         CommonMethods.setCommonModel(model);
         setModel(model);
