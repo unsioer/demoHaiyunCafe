@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class menuController {
-    @RequestMapping("/menuManage")
-    public String menuManage(){
-        return "/Common/menuManage";
+public class UserController {
+    @RequestMapping("/userManage")
+    public String userManage() {
+        return "userProfileEdit";
     }
 }

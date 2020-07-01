@@ -41,4 +41,12 @@ public interface UserMapper {
      */
     @Select("select u.id from user u where u.username = #{username} and password = #{password}")
     Long login(User user);
+
+    /**
+     * 删除
+     * @param user
+     * @return
+     */
+    @Delete("delete * from user where u.id= #{id}")
+    void delete(User user);
 }
