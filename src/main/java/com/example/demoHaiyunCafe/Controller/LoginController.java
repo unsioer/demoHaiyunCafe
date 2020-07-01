@@ -23,7 +23,7 @@ public class LoginController {
         Result result= userService.login(user);
         if(result.isSuccess()){
             session.setAttribute("loginUser",user.getUsername());
-            return "redirect:/main.html";
+            return "redirect:/dashboard";
         }
         else{
             map.put("msg",result.getMsg());

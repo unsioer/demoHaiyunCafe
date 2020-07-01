@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import com.example.demoHaiyunCafe.Methods.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
@@ -15,10 +16,10 @@ public class IndexController {
         model.addAttribute("message","最近消息");
         //model.addAttribute("tasks",loadTaskData());
     }
-    @GetMapping("/index")
-    public static String Index(Model model) {
-        CommonMethods.setCommonModel(model);
-        setModel(model);
-        return "index";
+    @RequestMapping("/dashboard")
+    public static String Index() {
+        //CommonMethods.setCommonModel(model);
+        //setModel(model);
+        return "dashboard";
     }
 }
