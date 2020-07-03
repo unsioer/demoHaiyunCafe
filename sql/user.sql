@@ -13,4 +13,5 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `user`(`id`,`username`,`password`) VALUES(1,'admin','admin');
+INSERT INTO `user`(`id`,`username`,`password`,`authority`) VALUES(1,'admin','admin','administrator');
+INSERT INTO `user`(`id`,`username`,`password`,`authority`) VALUES(2,'test','test','user');

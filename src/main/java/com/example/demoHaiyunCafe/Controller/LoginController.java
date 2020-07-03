@@ -16,25 +16,20 @@ public class LoginController {
     private UserService userService;
 
     @PostMapping(value = "/login")
-    public String login(User user, String identify, Map<String,Object> map, HttpSession session)
-    {
-        if(!identify.equals("admin")) {
-            Result result = userService.login(user);
-            if (result.isSuccess()) {
-                session.setAttribute("loginUser", user.getUsername());
+    public String login(User user, Map<String, Object> map, HttpSession session) {
+        Result result = userService.login(user);
+
+        if (result.isSuccess()) {
+            session.setAttribute("loginUser", user.getUsername());
+            System.out.println(user.getAuthority());
+            if (user.getAuthority().equals("administrator"))
                 return "redirect:/dashboard";
-            } else {
-                map.put("msg", result.getMsg());
-                return "login";
-            }
+            else
+                return "redirect:/index";
+        } else {
+            map.put("msg", result.getMsg());
+            return "login";
         }
-        else{
-            if(user.getUsername().equals("admin")&&user.getPassword().equals("admin"))
-                return "redirect:/dashboard";
-            else {
-                map.put("msg", "用户名或密码错误");
-                return "login";
-            }
-        }
+
     }
 }

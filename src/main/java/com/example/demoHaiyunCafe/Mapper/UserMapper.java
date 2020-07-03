@@ -55,6 +55,15 @@ public interface UserMapper {
     @Select("select u.id from user u where u.username = #{username} and password = #{password}")
     Long login(User user);
 
+    /**
+     * 查询用户权限
+     * @param user
+     * @return
+     */
+    @Select("select u.authority from user u where u.username = #{username} and password = #{password}")
+    String searchAuthority(User user);
+
+
     @Select(value = "select * from user u where u.id=#{id}")
     User findUserById(@Param("id") Long id);
 
@@ -64,7 +73,7 @@ public interface UserMapper {
      * @param user
      * @return
      */
-    @Update("update user set username=#{username}, password=#{password}, email=#{email}, phone=#{phone}, address=#{address} where u.id = #{id} ")
+    @Update("update user set username=#{username}, password=#{password}, email=#{email}, phone=#{phone}, address=#{address} where id = #{id} ")
     Long update(User user);
 
 

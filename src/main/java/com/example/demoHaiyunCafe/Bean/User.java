@@ -15,6 +15,9 @@ public class User {
     @Column(nullable = false,length = 64)
     private String password;
 
+    @Column(nullable = false)
+    private String authority;
+
     private String email;
     private String phone;
     private String address;
@@ -41,6 +44,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
     }
 
     public String getEmail() {
