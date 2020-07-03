@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>点餐管理系统注册界面</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{webjars/bootstrap/4.3.1/css/bootstrap.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{css/regist.css}" rel="stylesheet">
+</head>
+
+<body class="text-center">
+<form class="form-signin" th:action="@{/regist}" method="post">
+    <img class="mb-4" th:src="@{/img/coffee.jpg}" alt="" width="120" height="120">
+    <h1 class="h3 mb-3 font-weight-normal">请注册</h1>
+    <!--判断-->
+    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+    <label class="sr-only">用户名</label>
+    <input name = "username" type="text" class="form-control" placeholder="用户名" required="" autofocus="">
+    <br>
+    <label class="sr-only">密码</label>
+    <input name="password"  type="password" class="form-control" placeholder="密码" required="">
+    <br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+    <br>
+    <p><a href="/">已注册？返回</a></p>
+</form>
+
+</body>
+
+</html>
