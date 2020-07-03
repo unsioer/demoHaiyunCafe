@@ -31,7 +31,7 @@ public class ItemController {
                              @PathVariable(required = false) Integer pageSize,
                              @PathVariable(required = false) Integer pageCount,
                              Model model) {
-        model.addAttribute("title","菜品管理");
+        //model.addAttribute("title","菜品管理");
         List<String> itemTypeList = new ArrayList<String>();
         itemTypeList.add("饮料");
         itemTypeList.add("小吃");

@@ -1,5 +1,6 @@
 package com.example.demoHaiyunCafe.Service;
 
+import com.example.demoHaiyunCafe.Bean.Item;
 import com.example.demoHaiyunCafe.Bean.Result;
 import com.example.demoHaiyunCafe.Bean.User;
 import com.example.demoHaiyunCafe.Mapper.UserMapper;
@@ -8,10 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional(rollbackFor = RuntimeException.class)
 public class UserService {
-
     @Autowired
     private UserMapper userMapper;
     /**
@@ -66,5 +68,12 @@ public class UserService {
             e.printStackTrace();
         }
         return result;
+    }
+    /*
+     * @return Result
+     */
+    @Transactional
+    public List<User> findAll(){
+        return userMapper.findAll();
     }
 }

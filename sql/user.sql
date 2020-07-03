@@ -1,9 +1,8 @@
 CREATE DATABASE IF NOT EXISTS my_database;
-
-
 USE my_database;
 
-CREATE TABLE IF NOT EXISTS `user` (
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
   `id` bigint(32) NOT NULL AUTO_INCREMENT,
   `username` varchar(64) DEFAULT NULL,
   `password` varchar(64) DEFAULT NULL,

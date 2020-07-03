@@ -1,8 +1,12 @@
 package com.example.demoHaiyunCafe.Mapper;
 
+import com.example.demoHaiyunCafe.Bean.Item;
 import com.example.demoHaiyunCafe.Bean.User;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 
 /**
  * mapper的具体表达式
@@ -25,6 +29,15 @@ public interface UserMapper {
     User findUserByName(@Param("username") String username);
 
     /**
+     * 查询用户名是否存在，若存在，不允许注册
+     * 注解@Param(value) 若value与可变参数相同，注解可省略
+     * 注解@Results  列名和字段名相同，注解可省略
+     * @return
+     */
+    @Select(value = "select * from user")
+    List<User> findAll();
+
+    /**
      * 注册  插入一条user记录
      * @param user
      * @return
@@ -41,6 +54,15 @@ public interface UserMapper {
      */
     @Select("select u.id from user u where u.username = #{username} and password = #{password}")
     Long login(User user);
+
+    /**修改
+     * 针对个人信息的修改
+     * @param user
+     * @return
+     */
+    @Update("Update user u where u.id = #{id} set values()")
+    Long update(User user);
+
 
     /**
      * 删除
