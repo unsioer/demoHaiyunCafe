@@ -12,14 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-    private static void setModel(Model model) {
-        model.addAttribute("message","最近消息");
-        //model.addAttribute("tasks",loadTaskData());
-    }
     @RequestMapping("/dashboard")
     public static String Index() {
-        //CommonMethods.setCommonModel(model);
-        //setModel(model);
         return "dashboard";
     }
 }

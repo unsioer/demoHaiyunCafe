@@ -1,19 +1,24 @@
 package com.example.demoHaiyunCafe.Service;
 
+import com.example.demoHaiyunCafe.Bean.Item;
 import com.example.demoHaiyunCafe.Bean.Result;
 import com.example.demoHaiyunCafe.Bean.User;
 import com.example.demoHaiyunCafe.Mapper.UserMapper;
 
+import com.example.demoHaiyunCafe.Mapper.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(rollbackFor = RuntimeException.class)
 public class UserService {
-
     @Autowired
     private UserMapper userMapper;
+    private UserRepository userRepository;
     /**
      * 注册
      * @param user 参数封装
@@ -67,4 +72,31 @@ public class UserService {
         }
         return result;
     }
+
+    /*
+     * @return Result
+     */
+    @Transactional
+    public List<User> findAll(){
+        return userMapper.findAll();
+    }
+
+
+    @Transactional
+    public User findById(Long id){ return userMapper.findUserById(id); };
+
+    @Transactional
+    public User saveOrUpdateUser(User user){
+
+        try{
+            userRepository.save(user);
+        }
+        catch (Exception e){
+            throw new RuntimeException("Add user Error: "+e.getMessage());
+        }
+        return user;
+    }
+
+    @Transactional
+    public void deleteById(Long id){ userMapper.deleteById(id); };
 }

@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS my_database;
+USE my_database;
+
 DROP TABLE IF EXISTS `menu`;
 CREATE TABLE `menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
