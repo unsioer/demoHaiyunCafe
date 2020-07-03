@@ -42,7 +42,7 @@ public interface UserMapper {
      * @param user
      * @return
      */
-    @Insert({"insert into user values(#{id},#{username},#{password},null,null,null)"})
+    @Insert({"insert into user(id,username,password,email,phone,address) values(#{id},#{username},#{password},null,null,null)"})
     //加入该注解可以保存对象后，查看对象插入id
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
     void regist(User user);
@@ -58,12 +58,13 @@ public interface UserMapper {
     @Select(value = "select * from user u where u.id=#{id}")
     User findUserById(@Param("id") Long id);
 
-    /**修改
+    /**
+     * 修改
      * 针对个人信息的修改
      * @param user
      * @return
      */
-    @Update("Update user u where u.id = #{id} set values()")
+    @Update("update user set username=#{username}, password=#{password}, email=#{email}, phone=#{phone}, address=#{address} where u.id = #{id} ")
     Long update(User user);
 
 

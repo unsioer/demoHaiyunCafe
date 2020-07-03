@@ -18,7 +18,7 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserMapper userMapper;
-    private UserRepository userRepository;
+    //private UserRepository userRepository;
     /**
      * 注册
      * @param user 参数封装
@@ -89,7 +89,7 @@ public class UserService {
     public User saveOrUpdateUser(User user){
 
         try{
-            userRepository.save(user);
+            userMapper.update(user);
         }
         catch (Exception e){
             throw new RuntimeException("Add user Error: "+e.getMessage());
