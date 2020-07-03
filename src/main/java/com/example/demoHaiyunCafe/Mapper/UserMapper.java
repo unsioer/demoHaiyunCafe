@@ -55,6 +55,9 @@ public interface UserMapper {
     @Select("select u.id from user u where u.username = #{username} and password = #{password}")
     Long login(User user);
 
+    @Select(value = "select * from user u where u.id=#{id}")
+    User findUserById(@Param("id") Long id);
+
     /**修改
      * 针对个人信息的修改
      * @param user
@@ -66,9 +69,9 @@ public interface UserMapper {
 
     /**
      * 删除
-     * @param user
+     * @param id
      * @return
      */
-    @Delete("delete * from user where u.id= #{id}")
-    void delete(User user);
+    @Delete("delete from user u where u.id= #{id}")
+    void deleteById(@Param("id") Long id);
 }

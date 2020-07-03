@@ -2,10 +2,19 @@ package com.example.demoHaiyunCafe.Bean;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "user")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false,length = 20)
     private String username;
+
+    @Column(nullable = false,length = 64)
     private String password;
+
     private String email;
     private String phone;
     private String address;
