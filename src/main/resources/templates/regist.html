@@ -15,18 +15,18 @@
 <body class="text-center">
 <form class="form-signin" th:action="@{/regist}" method="post">
     <img class="mb-4" th:src="@{/img/coffee.jpg}" alt="" width="120" height="120">
-    <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
+    <h1 class="h3 mb-3 font-weight-normal">请注册</h1>
     <!--判断-->
     <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
-    <label class="sr-only">Username</label>
-    <input name = "username" type="text" class="form-control" placeholder="Username" required="" autofocus="">
+    <label class="sr-only">用户名</label>
+    <input name = "username" type="text" class="form-control" placeholder="用户名" required="" autofocus="">
     <br>
-    <label class="sr-only">Password</label>
-    <input name="password"  type="password" class="form-control" placeholder="Password" required="">
+    <label class="sr-only">密码</label>
+    <input name="password"  type="password" class="form-control" placeholder="密码" required="">
     <br>
     <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
     <br>
-    <p><a href="/">返回</a></p>
+    <p><a href="/">未注册？返回</a></p>
 </form>
 
 </body>
