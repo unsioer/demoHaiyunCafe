@@ -35,7 +35,7 @@ public class UserController {
 
     @GetMapping("/userEdit")
     public ModelAndView userEditGet(Model model, User user){
-        if(item.getId()!=null){
+        if(user.getId()!=null){
             User user1 = userService.findById(user.getId());
             if(user1!=null){
 
