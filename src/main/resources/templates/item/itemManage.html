@@ -51,20 +51,20 @@
                             </div>
                         </div>
                         <div class="ibox-content" style="display: block;">
-                            <form action="itemManage_0_0_0" th:action="@{itemManage.html}">
+                            <form action="itemManage_0_0_0" th:action="@{itemManage_0_0_0}" th:object="${item}">
                                 <div class="row">
                                     <div class="col-sm-2 m-b-xs">
-                                        <input id="title" name="title" placeholder="菜单名称" class="form-control" type="text" th:value="${item?.itemname}"/>
+                                        <input placeholder="菜单名称" class="form-control" type="text" th:field="*{itemname} "/>
                                     </div>
                                     <div class="col-sm-2 m-b-xs">
-                                       <select name="cid" id="cid" class="form-control" >
+                                       <select class="form-control"  th:field="*{type} ">
                                             <option value="0">--请选择菜品分类--</option>
-                                            <option th:each="ic : ${itemTypeList}" th:value="${ic?.toString()}" th:text="${ic?.toString()}" th:selected="${ic?.toString()==item?.type}">分类</option>
+                                            <option th:each="itemtype : ${itemTypeList}" th:value="${itemtype?.toString()}" th:text="${itemtype?.toString()}" th:selected="${itemtype?.toString()==item?.type}">分类</option>
                                         </select>
                                     </div>
 
                                     <div class="col-sm-2 m-b-xs">
-                                        <input id="minPrice" name="minPrice" class="form-control" type="text" th:value="${item?.price}" placeholder="价格" />
+                                        <input class="form-control" type="text" th:field="*{price} " placeholder="价格" />
                                     </div>
 <!--                                    <div class="col-sm-2 m-b-xs">-->
 <!--                                        <input id="maxPrice" name="maxPrice"  class="form-control" type="text" th:value="${item.maxPrice}" placeholder="最高价格"/>-->

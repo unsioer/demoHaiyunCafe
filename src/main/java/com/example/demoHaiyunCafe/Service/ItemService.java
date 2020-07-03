@@ -16,4 +16,9 @@ public interface ItemService {
 
     Item findByItemname(String itemname);
 
+    List<Item> findAllByItemname(String itemname);
+
+    List<Item> findAllByType(String type);
+
+    List<Item> findAllByPrice(Integer price);
 }

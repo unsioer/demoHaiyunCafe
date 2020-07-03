@@ -29,6 +29,7 @@ public class ItemServiceImpl implements ItemService{
     @Override
     @Transactional
     public Item saveOrUpdateItem(Item item){
+
         try{
             itemRepository.save(item);
         }
@@ -48,5 +49,23 @@ public class ItemServiceImpl implements ItemService{
     @Transactional
     public Item findByItemname(String itemname){
         return itemRepository.findByItemname(itemname);
+    }
+
+    @Override
+    @Transactional
+    public List<Item> findAllByType(String type){
+        return itemRepository.findAllByType(type);
+    }
+
+    @Override
+    @Transactional
+    public List<Item> findAllByPrice(Integer price){
+        return itemRepository.findAllByPrice(price);
+    }
+
+    @Override
+    @Transactional
+    public List<Item> findAllByItemname(String itemname){
+        return itemRepository.findAllByItemname(itemname);
     }
 }
