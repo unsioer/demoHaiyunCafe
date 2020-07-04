@@ -42,7 +42,7 @@ public interface UserMapper {
      * @param user
      * @return
      */
-    @Insert({"insert into user(id,username,password,email,phone,address) values(#{id},#{username},#{password},null,null,null)"})
+    @Insert({"insert into user(id,username,password,authority,email,phone,address) values(#{id},#{username},#{password},#{authority},null,null,null)"})
     //加入该注解可以保存对象后，查看对象插入id
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
     void regist(User user);
