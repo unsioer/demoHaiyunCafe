@@ -41,7 +41,7 @@
                         <a>用户管理</a>
                     </li>
                     <li class="active">
-                        <strong>用户新增或信息修改</strong>
+                        <strong>用户信息修改</strong>
                     </li>
                 </ol>
             </div>
@@ -53,7 +53,7 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>新增或修改用户</h5>
+                            <h5>用户信息修改</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -61,6 +61,8 @@
                             </div>
                         </div>
                         <div class="ibox-content">
+                            <!--p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p-->
+                            <!--上一行为修改后提示做准备-->
                             <form id="formTag" th:action="@{/userEdit}" method="POST" class="form-horizontal" enctype="multipart/form-data" th:object="${user}">
 
                                 <div class="form-group"><label class="col-sm-2 control-label">用户id：</label>

@@ -1,13 +1,10 @@
 package com.example.demoHaiyunCafe.Service;
 
-import com.example.demoHaiyunCafe.Bean.Item;
 import com.example.demoHaiyunCafe.Bean.Result;
 import com.example.demoHaiyunCafe.Bean.User;
 import com.example.demoHaiyunCafe.Mapper.UserMapper;
 
-import com.example.demoHaiyunCafe.Mapper.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +15,7 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserMapper userMapper;
-    private UserRepository userRepository;
+    //private UserRepository userRepository;
     /**
      * 注册
      * @param user 参数封装
@@ -28,6 +25,7 @@ public class UserService {
         Result result = new Result();
         result.setSuccess(false);
         result.setDetail(null);
+        user.setAuthority("user");
         try {
             User existUser = userMapper.findUserByName(user.getUsername());
             if(existUser != null){
@@ -64,6 +62,7 @@ public class UserService {
                 result.setMsg("登录成功");
                 result.setSuccess(true);
                 user.setId(userId);
+                user.setAuthority(userMapper.searchAuthority(user));
                 result.setDetail(user);
             }
         } catch (Exception e) {
@@ -89,7 +88,7 @@ public class UserService {
     public User saveOrUpdateUser(User user){
 
         try{
-            userRepository.save(user);
+            userMapper.update(user);
         }
         catch (Exception e){
             throw new RuntimeException("Add user Error: "+e.getMessage());
