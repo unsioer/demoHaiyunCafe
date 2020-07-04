@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -14,16 +15,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class MyMvcConfig implements WebMvcConfigurer {
 
-
     //所有的WebMvcConfigurer组件都会一起起作用
     @Bean //将组件注册在容器
     public WebMvcConfigurer webMvcConfigurer(){
         WebMvcConfigurer configurer = new WebMvcConfigurer() {
-            /*@Override
+            @Override
             public void addInterceptors(InterceptorRegistry registry) {
-                registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**");
+                registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/regist","/regist.html","/login","/login.html","/",
+                        "/img/**","/css/**","/js/**","/webjars/**");
                 WebMvcConfigurer.super.addInterceptors(registry);
-            }*/
+            }
             @Override
             public void addViewControllers(ViewControllerRegistry registry) {
                 registry.addViewController("/").setViewName("login");
@@ -31,13 +32,9 @@ public class MyMvcConfig implements WebMvcConfigurer {
                 registry.addViewController("/regist.html").setViewName("regist");
                 registry.addViewController("/index.html").setViewName("index");
                 registry.addViewController("/checkout.html").setViewName("checkout");
-                //registry.addViewController("/main.html").setViewName("dashboard");
             }
-
         };
-        /*configurer.addInterceptors(registry){
 
-        };*/
         return configurer;
     }
 

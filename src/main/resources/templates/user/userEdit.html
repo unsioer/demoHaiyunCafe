@@ -61,6 +61,8 @@
                             </div>
                         </div>
                         <div class="ibox-content">
+                            <!--p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p-->
+                            <!--上一行为修改后提示做准备-->
                             <form id="formTag" th:action="@{/userEdit}" method="POST" class="form-horizontal" enctype="multipart/form-data" th:object="${user}">
 
                                 <div class="form-group"><label class="col-sm-2 control-label">用户id：</label>
