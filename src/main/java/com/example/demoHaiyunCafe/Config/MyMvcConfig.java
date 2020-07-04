@@ -1,5 +1,6 @@
 package com.example.demoHaiyunCafe.Config;
 
+import com.example.demoHaiyunCafe.Interceptor.AdminInterceptor;
 import com.example.demoHaiyunCafe.Interceptor.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +25,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
                 registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/regist","/regist.html","/login","/login.html","/",
                         "/img/**","/css/**","/js/**","/webjars/**");
                 WebMvcConfigurer.super.addInterceptors(registry);
+                registry.addInterceptor(new AdminInterceptor()).addPathPatterns("/dashboard","/item**");
             }
             @Override
             public void addViewControllers(ViewControllerRegistry registry) {

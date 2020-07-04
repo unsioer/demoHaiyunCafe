@@ -29,12 +29,12 @@ public class UserProfileController {
             }
             model.addAttribute("user",user1);
         }
-        return new ModelAndView("user/userEdit","userEditModel",model );
+        return new ModelAndView("user/userProfileEdit","userEditModel",model );
     }
 
     @PostMapping("/userProfileEdit")
     public ModelAndView userEditPost(Model model,User user){
         userService.saveOrUpdateUser(user);
-        return new ModelAndView("user/userEdit","userEditModel",model );
+        return new ModelAndView("user/userProfileEdit","userEditModel",model );
     }
 }
