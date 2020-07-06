@@ -24,48 +24,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <!-- header -->
 <div class="head-top">
-			
+
+</div>
+<div class="header">
+
+	<div class="container">
+		<div class="logo">
+			<a href="index.html"><img src="img/HaiyunCafe.png" class="img-responsive" alt=""></a>
 		</div>
-	<div class="header">
-		
-		<div class="container">
-			<div class="logo">
-				<a href="index.html"><img src="img/HaiyunCafe.png" class="img-responsive" alt=""></a>
+		<div class="header-left">
+			<div class="head-nav">
+				<span class="menu"> </span>
+				<ul>
+					<li class="active"><a href="index.html">主页</a></li>
+					<li><a href="/logout">登出</a></li>
+					<li><a href="/userProfileEdit">修改个人信息</a></li>
+					<div class="clearfix"> </div>
+				</ul>
+				<!-- script-for-nav -->
+				<script>
+					$( "span.menu" ).click(function() {
+						$( ".head-nav ul" ).slideToggle(300, function() {
+							// Animation complete.
+						});
+					});
+				</script>
+				<!-- script-for-nav -->
 			</div>
-			<div class="header-left">
-				<div class="head-nav">
-					<span class="menu"> </span>
-						<ul>
-							<li class="active"><a href="index.html">主页</a></li>
-							<li><a href=" resturants.html">登入</a></li>
-<!--							<li><a href="login.html">注册</a></li>-->
-							<li><a href=" contact.html">联系我们</a></li>
-								<div class="clearfix"> </div>		
-						</ul>
-								<!-- script-for-nav -->
-							<script>
-								$( "span.menu" ).click(function() {
-								  $( ".head-nav ul" ).slideToggle(300, function() {
-									// Animation complete.
-								  });
-								});
-							</script>
-						<!-- script-for-nav --> 
-					</div>
-					<div class="header-right1">
-						<div class="cart box_1">
-							<a href="checkout.html">
-								<h3> <span class="simpleCart_total">0.00元</span> (<span id="simpleCart_quantity" class="simpleCart_quantity">0</span> 菜品)<img src="img/bag.png" alt=""></h3>
-							</a>	
-							<p><a href="javascript:;" class="simpleCart_empty">清空购物车</a></p>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
+			<div class="header-right1">
+				<div class="cart box_1">
+					<a href="checkout.html">
+						<h3> <span class="simpleCart_total"> 0.00元 </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span> items)<img src="img/bag.png" alt=""></h3>
+					</a>
+					<p><a href="javascript:;" class="simpleCart_empty">清空购物车</a></p>
 					<div class="clearfix"> </div>
 				</div>
-					<div class="clearfix"> </div>
 			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="clearfix"> </div>
 	</div>
+</div>
 <!-- header -->
 <!-- checkout -->
 <div class="cart-items">

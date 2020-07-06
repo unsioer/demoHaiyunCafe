@@ -1,148 +1,112 @@
-<!DOCTYPE html>
+
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>用户信息修改</title>
-
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
-    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" />
-
-    <!-- Toastr style -->
-    <link th:href="@{/css/plugins/toastr/toastr.min.css}" rel="stylesheet"/>
-
-    <link th:href="@{/css/style.css}" rel="stylesheet" />
-
-    <!-- summernote style -->
-    <link th:href="@{/css/plugins/summernote/summernote.css}" rel="stylesheet" />
-    <link th:href="@{/css/plugins/summernote/summernote-bs3.css}" rel="stylesheet" />
-
+	<title>Spicemystery a Hotel and Resturant Category Flat Bootstarp Responsive Website Template | Checkout :: w3layouts</title>
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+	<link href="css/userstyle.css" rel="stylesheet" type="text/css" media="all" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Spicemystery Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
+	<script src="js/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+	<script src="js/simpleCart.min.js"> </script>
 </head>
-
 <body>
+<!-- header -->
+<div class="head-top">
 
-<div id="wrapper">
-    <div id="page-wrapper" class="gray-bg">
-        <div class="row wrapper border-bottom white-bg page-heading" th:fragment="headerNav">
-            <div class="col-lg-10">
-                <h2>用户资料</h2>
-                <ol class="breadcrumb">
-                    <li>
-                        <a href="/index">首页</a>
-                    </li>
-                    <li class="active">
-                        <strong>用户信息修改</strong>
-                    </li>
-                </ol>
-            </div>
-            <div class="col-lg-2">
-            </div>
-        </div>
-        <div class="wrapper wrapper-content animated fadeInRight">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>用户信息修改</h5>
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
+</div>
+<div class="header">
 
-                            <form id="formTag" th:action="@{/userProfileEdit}" method="POST" class="form-horizontal" enctype="multipart/form-data" th:object="${user}">
-
-                                <div class="form-group"><label class="col-sm-2 control-label">用户id：</label>
-                                    <div class="col-sm-10">
-                                        <input readonly="readonly" type="text" class="form-control" th:field="*{id}"/>
-                                    </div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-
-                                <div class="form-group"><label class="col-sm-2 control-label">用户名：</label>
-                                    <div class="col-sm-10">
-                                        <input  type="text" class="form-control" th:field="*{username} " required=""/>
-                                    </div>
-                                </div>
-
-                                <div class="hr-line-dashed"></div>
-
-                                <div class="form-group"><label class="col-sm-2 control-label">密码：</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" th:field="*{password}" required=""/>
-                                    </div>
-                                </div>
-
-                                <div class="hr-line-dashed"></div>
-
-                                <div class="form-group"><label class="col-sm-2 control-label">电子邮箱：</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" th:field="*{email}"/>
-                                    </div>
-                                </div>
-
-                                <div class="hr-line-dashed"></div>
-
-                                <div class="form-group"><label class="col-sm-2 control-label">电话：</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" th:field="*{phone}"/>
-                                    </div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-
-                                <div class="form-group"><label class="col-sm-2 control-label">地址：</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" th:field="*{address}"/>
-                                    </div>
-                                </div>
-
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group">
-                                    <div class="col-sm-4 col-sm-offset-2">
-                                        <button id="submitButton" type="submit" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;提&nbsp;&nbsp;&nbsp;&nbsp;交&nbsp;&nbsp;&nbsp;&nbsp;</button>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <a href="/index">返回首页</a>
-                                    </div>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="footer" th:include="footer :: copyright"></div>
-    </div>
+	<div class="container">
+		<div class="logo">
+			<a href="index.html"><img src="img/HaiyunCafe.png" class="img-responsive" alt=""></a>
+		</div>
+		<div class="header-left">
+			<div class="head-nav">
+				<span class="menu"> </span>
+				<ul>
+					<li ><a href="index.html">主页</a></li>
+					<li><a href="/logout">登出</a></li>
+					<li class="active"><a href="/userProfileEdit">修改个人信息</a></li>
+					<div class="clearfix"> </div>
+				</ul>
+				<!-- script-for-nav -->
+				<script>
+					$( "span.menu" ).click(function() {
+						$( ".head-nav ul" ).slideToggle(300, function() {
+							// Animation complete.
+						});
+					});
+				</script>
+				<!-- script-for-nav -->
+			</div>
+			<div class="header-right1">
+				<div class="cart box_1">
+					<a href="checkout.html">
+						<h3> <span class="simpleCart_total"> 0.00元 </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span> items)<img src="img/bag.png" alt=""></h3>
+					</a>
+					<p><a href="javascript:;" class="simpleCart_empty">清空购物车</a></p>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<!-- header -->
+<!-- contact -->
+	<div class="contact">
+	 <div class="container">
+		  <div class="contact-head">
+			 <h3>个人信息修改</h3>
+		  </div>
+		  <div class="contact-grid">
+			 <form th:action="@{/userProfileEdit}" method="POST" th:object="${user}">
+				 <input type="hidden" th:field="*{id}"/>
+				 <input style="color: black" type="text" placeholder="用户名" th:field="*{username}" required/>
+				 <input style="color: black" type="text" placeholder="密码" th:field="*{password}" required/>
+				 <input style="color: black" type="text" placeholder="电话号码" th:field="*{phone}" required/>
+				 <input style="color: black" type="text" placeholder="邮箱" th:field="*{email}" required/>
+				 <textarea style="color: black" placeholder="地址" th:field="*{address}" required></textarea>
+				 <input type="submit" value="提交"/>
+			 </form>
+		  </div>
+<!--		  <div class="contact-details">-->
+<!--			  <div class="col-md-6 contact-map">-->
+<!--				 <h4>FIND US HERE</h4>-->
+<!--				 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d803187.8113675824!2d-120.11910914056458!3d38.15292455846902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb9fe5f285e3d%3A0x8b5109a227086f55!2sCalifornia%2C+USA!5e0!3m2!1sen!2sin!4v1423829283333" frameborder="0" style="border:0"></iframe>-->
+<!--			  </div>-->
+<!--			  <div class="col-md-6 company_address">		 -->
+<!--					<h4>ADDRESS</h4>-->
+<!--					<p>500 Lorem Ipsum Dolor Sit,</p>-->
+<!--					<p>22-56-2-9 Sit Amet, Lorem,</p>-->
+<!--					<p>USA</p>-->
+<!--					<p>Phone:(00) 222 666 444</p>-->
+<!--					<p>Fax: (000) 000 00 00 0</p>-->
+<!--					<p>Email: <a href="mailto:info@example.com">info@mycompany.com</a></p>-->
+<!--					<p>Follow on: <a href="#">Facebook</a>, <a href="#">Twitter</a></p>-->
+<!--			 </div>-->
+<!--			  <div class="clearfix"></div>-->
+<!--	     </div>		 -->
+	 </div>
 </div>
 
-<!-- Mainly scripts -->
-<script th:src="@{/js/jquery-2.1.1.js}"></script>
-<script th:src="@{/js/bootstrap.min.js}"></script>
-<script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
-<script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
-
-<!-- Peity -->
-<script th:src="@{/js/plugins/peity/jquery.peity.min.js}"></script>
-
-<!-- Custom and plugin javascript -->
-<script th:src="@{/js/inspinia.js}"></script>
-<script th:src="@{/js/plugins/pace/pace.min.js}"></script>
-
-<!-- Toastr script -->
-<script th:src="@{/js/plugins/toastr/toastr.min.js}"></script>
-
-<!-- common -->
-<script th:src="@{/js/common.js}"></script>
-
-<!-- SUMMERNOTE -->
-<script th:src="@{/js/plugins/summernote/summernote.min.js}"></script>
-
+<!-- footer-->
+<div class="footer">
+	<div class="container">
+		<div class="footer-left">
+			<p>HaiYum Cafe © 2020</p>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<!-- footer-->
 </body>
-
 </html>
