@@ -25,21 +25,21 @@ public class LoginController {
 
 
     @PostMapping(value = "/login")
-    public String login(User user, Map<String, Object> map, HttpSession session) {
+    public String login(User user, String identify ,Map<String, Object> map, HttpSession session) {
         Result result = userService.login(user);
 
-        if (result.isSuccess()) {
+        if (result.isSuccess() && identify.equals("administrator")&& user.getAuthority().equals("administrator")) {
             session.setAttribute("loginUser", user.getUsername());
-            System.out.println(user.getAuthority());
             session.setAttribute("user",user);
-            if (user.getAuthority().equals("administrator"))
-            {
-                return "redirect:/dashboard";
-            }
-            else
-                return "redirect:/index?userid="+user.getId();
-        } else {
-            map.put("msg", result.getMsg());
+            return "redirect:/dashboard";
+        }
+        else if(result.isSuccess()&& identify.equals("user") && user.getAuthority().equals("user")){
+            session.setAttribute("loginUser", user.getUsername());
+            session.setAttribute("user",user);
+            return "redirect:/index?userid="+user.getId();
+        }
+        else {
+            map.put("msg", "用户名或密码错误");
             return "login";
         }
 

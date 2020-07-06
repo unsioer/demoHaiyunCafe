@@ -10,4 +10,4 @@ public class UserIndexController {
     public ModelAndView userIndex(){
         return new ModelAndView("index");
     }
-}
+}   
