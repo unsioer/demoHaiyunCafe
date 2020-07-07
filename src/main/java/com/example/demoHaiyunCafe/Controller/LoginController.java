@@ -36,7 +36,7 @@ public class LoginController {
         else if(result.isSuccess()&& identify.equals("user") && user.getAuthority().equals("user")){
             session.setAttribute("loginUser", user.getUsername());
             session.setAttribute("user",user);
-            return "redirect:/index?userid="+user.getId();
+            return "redirect:/index";
         }
         else {
             map.put("msg", "用户名或密码错误");
