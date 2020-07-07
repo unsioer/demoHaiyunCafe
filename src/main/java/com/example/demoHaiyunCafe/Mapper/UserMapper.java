@@ -34,7 +34,7 @@ public interface UserMapper {
      * 注解@Results  列名和字段名相同，注解可省略
      * @return
      */
-    @Select(value = "select * from user")
+    @Select(value = "select * from user where authority = 'user'")
     List<User> findAll();
 
     /**
