@@ -82,6 +82,6 @@ public interface UserMapper {
      * @param id
      * @return
      */
-    @Delete("delete from user u where u.id= #{id}")
+    @Delete("delete from user where id=#{id}")
     void deleteById(@Param("id") Long id);
 }
