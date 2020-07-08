@@ -30,11 +30,13 @@ public class LoginController {
 
         if (result.isSuccess() && identify.equals("administrator")&& user.getAuthority().equals("administrator")) {
             session.setAttribute("loginUser", user.getUsername());
+            session.setAttribute("userId",user.getId());
             session.setAttribute("user",user);
             return "redirect:/dashboard";
         }
         else if(result.isSuccess()&& identify.equals("user") && user.getAuthority().equals("user")){
             session.setAttribute("loginUser", user.getUsername());
+            session.setAttribute("userId",user.getId());
             session.setAttribute("user",user);
             return "redirect:/index";
         }
