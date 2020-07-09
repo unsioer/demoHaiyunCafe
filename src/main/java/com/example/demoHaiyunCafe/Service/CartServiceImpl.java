@@ -53,4 +53,16 @@ public class CartServiceImpl implements CartService {
     public List<Cart> findAllByUid(Integer uid){
         return cartRepository.findAllByUid(uid);
     }
+
+    @Override
+    @Transactional
+    public Cart findByUidAndIid(Integer uid, Integer iid){
+        return cartRepository.findByUidAndIid(uid,iid);
+    }
+
+    @Override
+    @Transactional
+    public void deleteAllByUid(Integer uid){
+        cartRepository.deleteAllByUid(uid);
+    }
 }

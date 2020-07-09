@@ -17,4 +17,7 @@ public interface CartService {
 
     List<Cart> findAllByUid(Integer uid);
 
+    Cart findByUidAndIid(Integer uid, Integer iid);
+
+    void deleteAllByUid(Integer uid);
 }
