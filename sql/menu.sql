@@ -8,5 +8,6 @@ CREATE TABLE `menu` (
   `number` int(11) NOT NULL,
   `price` int(11) NOT NULL,
   `type` varchar(32) NOT NULL,
+  `picturepath` varchar(60) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
