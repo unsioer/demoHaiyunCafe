@@ -18,7 +18,7 @@ public class Item {
     private Integer number;
     @Column(nullable = false)
     private Integer price;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String picturepath;
 
     public Integer getId() {

@@ -3,6 +3,7 @@ package com.example.demoHaiyunCafe.Config;
 import com.example.demoHaiyunCafe.Interceptor.AdminInterceptor;
 import com.example.demoHaiyunCafe.Interceptor.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -15,6 +16,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class MyMvcConfig implements WebMvcConfigurer {
+    @Value("${file.upload.path}")
+    private String filePath;
 
     //所有的WebMvcConfigurer组件都会一起起作用
     @Bean //将组件注册在容器
@@ -34,6 +37,10 @@ public class MyMvcConfig implements WebMvcConfigurer {
                 registry.addViewController("/regist.html").setViewName("regist");
                 registry.addViewController("/index.html").setViewName("index");
                 registry.addViewController("/checkout.html").setViewName("checkout");
+            }
+            @Override
+            public void addResourceHandlers(ResourceHandlerRegistry registry) {
+                registry.addResourceHandler("/upload**").addResourceLocations("file:/"+filePath);
             }
         };
 

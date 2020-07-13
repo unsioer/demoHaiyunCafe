@@ -95,6 +95,7 @@ public class ItemController {
 
     @PostMapping("/itemEdit")
     public ModelAndView itemEditPost(Model model,Item item){
+
         itemService.saveOrUpdateItem(item);
         List<String> itemTypeList = new ArrayList<String>();
         itemTypeList.add("饮料");
