@@ -61,6 +61,8 @@ public class Item {
         this.price = price;
     }
 
+    public String getPicturepath() {return picturepath;}
+
     public void setPicturepath(String picturepath) {this.picturepath=picturepath;}
 
     public Item(String itemname, String type, Integer number, Integer price) {

@@ -22,4 +22,5 @@ INSERT INTO `menu`(`id`, `itemname`, `number`, `price`, `type`, `picturepath`)
   VALUES(4, '慕斯蛋糕', 88, 19, '小吃', 'img/慕斯蛋糕.jpg');
 INSERT INTO `menu`(`id`, `itemname`, `number`, `price`, `type`, `picturepath`)
   VALUES(5, '柠檬水', 250, 10, '饮料', 'img/柠檬水.jpg');
-  
+INSERT INTO `menu`(`id`, `itemname`, `number`, `price`, `type`, `picturepath`)
+  VALUES(6, '提拉米苏', 300, 17, '小吃', 'img/提拉米苏.jpg');
