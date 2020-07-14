@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,6 +19,7 @@ public class UploadController {
 
     // 执行上传
     @RequestMapping("upload")
+    @ResponseBody
     public String upload(@RequestParam("file") MultipartFile file, Model model) {
         // 获取上传文件名
         String filename = file.getOriginalFilename();
@@ -37,7 +39,7 @@ public class UploadController {
         }
         // 将src路径发送至html页面
         model.addAttribute("filename", "/"+filename);
-        System.out.println("OK");
-        return path;
+        System.out.println(String.valueOf(true));
+        return String.valueOf(true);
     }
 }

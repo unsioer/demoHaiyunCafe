@@ -94,12 +94,8 @@
                                     <div class="col-sm-10">
                                         <input id="imgPath" type="text" class="form-control" th:field="*{picturepath}" required=""/>
                                         <img id="imgDisplay" th:src="@{'/'+${item.picturepath}}" width="35%" />
-                                        <!--input id="imgUpload"  class="btn btn-white btn-sm">&nbsp;&nbsp;&nbsp;&nbsp;上传&nbsp;&nbsp;&nbsp;&nbsp;</input-->
-                                        <input type="file" accept="image/*"
-                                               name="uploader-input"
-                                               class="uploader-file"
-                                               id="uploadFile">
-
+                                        <input type="file" accept="image/*" name="uploader-input"
+                                               class="uploader-file" id="uploadFile">
                                     </div>
                                 </div>
 
@@ -168,32 +164,30 @@
 
 
 <script th:inline="javascript">
-
     document.getElementById('uploadFile').addEventListener('change', function (event) {
         var $file = event.currentTarget;
-        var formData = new FormData();
         var file = $file.files[0];
-        formData = new FormData();
+        var formData = new FormData();
         formData.append("file", file);
         $.ajax({
-            url: '/upload',
+            url: 'upload',
             type: 'POST',
             dataType: 'json',
             data: formData,
             contentType: false,
-            processData: false
-        })
-        alert("OK"+file.name);
-            /*.done(*/
-            /*(data => {*/
-        $('#imgDisplay').append(`<input id="imgPath" type="text" class="form-control" th:field="*{picturepath}" required="">$file.name</input>`);
-                //$('#imgDisplay').append(`<img id="imgDisplay" th:src='@{"/"+${item.picturepath}}' width="35%" />`);
-            /*})
-            .fail(data => {
+            processData: false,
+            success: function (data) {
+                alert("成功上传"+file.name);
+                $('#imgPath').attr("value","upload/"+file.name);
 
-                console.log(data);
-                alert(data);
-            });*/
+                $('#imgDisplay').attr("src","upload/"+file.name);
+            },
+            error: function (response) {
+                console.log(response);
+                alert(response);
+            }
+        })
+
     });
 </script>
 <!--        //提交-->
