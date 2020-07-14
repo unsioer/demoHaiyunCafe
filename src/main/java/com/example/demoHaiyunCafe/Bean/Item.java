@@ -18,6 +18,8 @@ public class Item {
     private Integer number;
     @Column(nullable = false)
     private Integer price;
+    @Column(nullable = true)
+    private String picturepath;
 
     public Integer getId() {
         return id;
@@ -58,6 +60,10 @@ public class Item {
     public void setPrice(Integer price) {
         this.price = price;
     }
+
+    public String getPicturepath() {return picturepath;}
+
+    public void setPicturepath(String picturepath) {this.picturepath=picturepath;}
 
     public Item(String itemname, String type, Integer number, Integer price) {
         this.itemname = itemname;

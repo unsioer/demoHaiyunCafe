@@ -43,6 +43,7 @@
                     <li class="active">
                         <strong>菜品新增或修改</strong>
                     </li>
+                    
                 </ol>
             </div>
             <div class="col-lg-2">
@@ -87,28 +88,24 @@
                                     </div>
                                 </div>
 
-<!--                                <div class="hr-line-dashed"></div>-->
+                                <div class="hr-line-dashed"></div>
 
-<!--                                <div id="imageCell" class="form-group"><label class="col-sm-2 control-label">图片：</label>-->
-<!--                                    <div class="col-sm-10">-->
-<!--                                        <img  th:src="@{'/'+${item.image}}" height="250px" width="200px" />-->
-<!--                                        <button id="imageCellBut" type="button" class="btn btn-white btn-sm">&nbsp;&nbsp;&nbsp;&nbsp;修改&nbsp;&nbsp;&nbsp;&nbsp;</button>-->
-<!--                                    </div>-->
-<!--                                </div>-->
+                                <div id="imageCell" class="form-group"><label class="col-sm-2 control-label">图片：</label>
+                                    <div class="col-sm-10">
+                                        <input id="imgPath" type="text" class="form-control" th:field="*{picturepath}" required=""/>
+                                        <img id="imgDisplay" th:src="@{'/'+${item.picturepath}}" width="35%" />
+                                        <input type="file" accept="image/*" name="uploader-input"
+                                               class="uploader-file" id="uploadFile">
+                                    </div>
+                                </div>
 
-<!--                                <div id="imputCell" class="form-group"><label class="col-sm-2 control-label">图片：</label>-->
-<!--                                    <div class="col-sm-10">-->
-<!--                                        <input id="file" name="file" type="file" />-->
-<!--                                    </div>-->
-<!--                                </div>-->
+                                <!--div class="hr-line-dashed"></div>
 
-<!--                                <div class="hr-line-dashed"></div>-->
-
-<!--                                <div class="form-group"><label class="col-sm-2 control-label">卖点：</label>-->
-<!--                                    <div class="col-sm-10">-->
-<!--                                        <textarea id="sellPoint" name="sellPoint" class="form-control" rows="2" th:text="${item.sellPoint}"></textarea>-->
-<!--                                    </div>-->
-<!--                                </div>-->
+                                <div class="form-group"><label class="col-sm-2 control-label">卖点：</label>
+                                    <div class="col-sm-10">
+                                        <textarea id="sellPoint" name="sellPoint" class="form-control" rows="2" th:text="${item.sellPoint}"></textarea>
+                                    </div>
+                                </div-->
 
                                 <div class="hr-line-dashed"></div>
 
@@ -165,6 +162,34 @@
 <!-- SUMMERNOTE -->
 <script th:src="@{/js/plugins/summernote/summernote.min.js}"></script>
 
+
+<script th:inline="javascript">
+    document.getElementById('uploadFile').addEventListener('change', function (event) {
+        var $file = event.currentTarget;
+        var file = $file.files[0];
+        var formData = new FormData();
+        formData.append("file", file);
+        $.ajax({
+            url: 'upload',
+            type: 'POST',
+            dataType: 'json',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                alert("成功上传"+file.name);
+                $('#imgPath').attr("value","upload/"+file.name);
+
+                $('#imgDisplay').attr("src","upload/"+file.name);
+            },
+            error: function (response) {
+                console.log(response);
+                alert(response);
+            }
+        })
+
+    });
+</script>
 <!--        //提交-->
 <!--        $("#submitButton").click(function(){-->
 <!--            if($("#itemname").val() == ""){-->

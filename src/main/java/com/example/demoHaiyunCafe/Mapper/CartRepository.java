@@ -9,4 +9,8 @@ import java.util.List;
 public interface CartRepository extends JpaRepository<Cart,Integer>  {
 
     List<Cart> findAllByUid(Integer uid);
+
+    Cart findByUidAndIid(Integer uid,Integer iid);
+
+    void deleteAllByUid(Integer uid);
 }
