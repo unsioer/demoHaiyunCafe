@@ -1,6 +1,7 @@
 package com.example.demoHaiyunCafe.Controller;
 
 import com.example.demoHaiyunCafe.Bean.Cart;
+import com.example.demoHaiyunCafe.Bean.Item;
 import com.example.demoHaiyunCafe.Service.CartServiceImpl;
 import com.example.demoHaiyunCafe.Service.ItemServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class UserIndexController {
 
     @GetMapping("/index")
     public ModelAndView userIndex(HttpSession session, Model model ){
+        //购物车
         Integer uid =Integer.parseInt(session.getAttribute("userId").toString());
         System.out.println(uid);
         int totalPrice = 0;
@@ -37,6 +39,10 @@ public class UserIndexController {
 
         model.addAttribute("totalPrice","￥"+decimalFormat.format(totalPrice));
         model.addAttribute("num",num);
+
+        //菜单显示
+        List<Item> itemList = itemService.findAll();
+        model.addAttribute("itemList",itemList);
         return new ModelAndView("index");
     }
 }   

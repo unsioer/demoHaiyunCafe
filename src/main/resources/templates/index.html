@@ -124,57 +124,58 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- latis -->	
 	<div class="latis">
 		<div class="container">
-		<div class="col-md-4 latis-left">
-			<h3>提拉米苏</h3>
-			<img src="img/提拉米苏.jpg" class="img-responsive" alt="" width="550" height="450">
+
+		<div class="col-md-4 latis-left" th:each="item:${itemList}">
+			<h3 type="text" th:text="${item.getItemname()}"></h3>
+			<img th:src="${item.getPicturepath()}" class="img-responsive" alt="" width="550" height="450">
 			<div class="special-info grid_1 simpleCart_shelfItem">
 					<p></p>
 <!--				<p>Cum sociis natodiculus mus.rhoncus egestas ac sit </p>-->
 				<div class="cur">
 					<div class="cur-left">
-						<div class="item_add"><span class="item_price"><a class="morebtn hvr-rectangle-in" href="#" th:onclick="'javascript:addToCart(6);'">添加到购物车</a></span></div>
+						<div class="item_add"><span class="item_price"><a class="morebtn hvr-rectangle-in" href="#" th:onclick="'javascript:addToCart('+${item.id}+');'">添加到购物车</a></span></div>
 					</div>
 					<div class="cur-right">
-						<div class="item_add"><span class="item_price"><h6>17元</h6></span></div>
+						<div class="item_add"><span class="item_price"><h6 th:text="${item.price}"></h6></span></div>
 					</div>
 						<div class="clearfix"> </div>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4 latis-left">
-			<h3>至尊披萨</h3>
-			<img src="img/至尊披萨.jpg" class="img-responsive" alt="" width="550" height="450">
-			<div class="special-info grid_1 simpleCart_shelfItem">
-				<p></p>
-<!--				<p>Cum sociis natodiculus mus.rhoncus egestas ac sit </p>-->
-				<div class="cur">
-					<div class="cur-left">
-						<div class="item_add"><span class="item_price"><a class="morebtn hvr-rectangle-in" href="#">添加到购物车</a></span></div>
-					</div>
-					<div class="cur-right">
-						<div class="item_add"><span class="item_price"><h6> 55元</h6></span></div>
-					</div>
-						<div class="clearfix"> </div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4 latis-left">
-			<h3>柠檬水</h3>
-			<img src="img/柠檬水.jpg" class="img-responsive" alt="" width="550" height="450">
-			<div class="special-info grid_1 simpleCart_shelfItem">
-				<p></p>
-<!--				<p>Cum sociis natodiculus mus.rhoncus egestas ac sit </p>-->
-				<div class="cur">
-					<div class="cur-left">
-						<div class="item_add"><span class="item_price"><a class="morebtn hvr-rectangle-in" href="#">添加到购物车</a></span></div>
-					</div>
-					<div class="cur-right">
-						<div class="item_add"><span class="item_price"><h6>10元</h6></span></div>
-					</div>
-						<div class="clearfix"> </div>
-				</div>
-			</div>
-		</div>
+<!--		<div class="col-md-4 latis-left">-->
+<!--			<h3>至尊披萨</h3>-->
+<!--			<img src="img/至尊披萨.jpg" class="img-responsive" alt="" width="550" height="450">-->
+<!--			<div class="special-info grid_1 simpleCart_shelfItem">-->
+<!--				<p></p>-->
+<!--&lt;!&ndash;				<p>Cum sociis natodiculus mus.rhoncus egestas ac sit </p>&ndash;&gt;-->
+<!--				<div class="cur">-->
+<!--					<div class="cur-left">-->
+<!--						<div class="item_add"><span class="item_price"><a class="morebtn hvr-rectangle-in" href="#">添加到购物车</a></span></div>-->
+<!--					</div>-->
+<!--					<div class="cur-right">-->
+<!--						<div class="item_add"><span class="item_price"><h6> 55元</h6></span></div>-->
+<!--					</div>-->
+<!--						<div class="clearfix"> </div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--		<div class="col-md-4 latis-left">-->
+<!--			<h3>柠檬水</h3>-->
+<!--			<img src="img/柠檬水.jpg" class="img-responsive" alt="" width="550" height="450">-->
+<!--			<div class="special-info grid_1 simpleCart_shelfItem">-->
+<!--				<p></p>-->
+<!--&lt;!&ndash;				<p>Cum sociis natodiculus mus.rhoncus egestas ac sit </p>&ndash;&gt;-->
+<!--				<div class="cur">-->
+<!--					<div class="cur-left">-->
+<!--						<div class="item_add"><span class="item_price"><a class="morebtn hvr-rectangle-in" href="#">添加到购物车</a></span></div>-->
+<!--					</div>-->
+<!--					<div class="cur-right">-->
+<!--						<div class="item_add"><span class="item_price"><h6>10元</h6></span></div>-->
+<!--					</div>-->
+<!--						<div class="clearfix"> </div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
 			<div class="clearfix"> </div>
 			
 				

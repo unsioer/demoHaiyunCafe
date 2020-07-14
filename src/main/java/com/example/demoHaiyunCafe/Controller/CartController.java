@@ -21,7 +21,6 @@ public class CartController {
     public String addToCart(@PathVariable(required = false)Integer iid, HttpSession session){
         Integer uid =Integer.parseInt(session.getAttribute("userId").toString());
         Cart cart = cartService.findByUidAndIid(uid,iid);
-        System.out.println(uid);
         System.out.println(iid);
         if(cart!=null){
             cart.setNum(cart.getNum()+1);
