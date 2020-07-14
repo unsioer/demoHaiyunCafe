@@ -31,7 +31,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="head-nav">
 					<span class="menu"> </span>
 						<ul>
-							<li class="active"><a href="index.html">主页</a></li>
+							<li class="active"><a href="index">主页</a></li>
 							<li><a href="/logout">登出</a></li>
 							<li><a href="/userProfileEdit">修改个人信息</a></li>
 								<div class="clearfix"> </div>		
@@ -127,7 +127,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		<div class="col-md-4 latis-left" th:each="item:${itemList}">
 			<h3 type="text" th:text="${item.getItemname()}"></h3>
-			<img th:src="${item.getPicturepath()}" class="img-responsive" alt="" width="550" height="450">
+			<img th:src="${item.getPicturepath()}" style="display: inline-block; width: 450px; height: 300px;" class="img-responsive" alt="" width="550" height="450">
 			<div class="special-info grid_1 simpleCart_shelfItem">
 					<p></p>
 <!--				<p>Cum sociis natodiculus mus.rhoncus egestas ac sit </p>-->
@@ -141,6 +141,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="clearfix"> </div>
 				</div>
 			</div>
+			<br>
 		</div>
 <!--		<div class="col-md-4 latis-left">-->
 <!--			<h3>至尊披萨</h3>-->
