@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -18,8 +20,6 @@ import java.util.List;
 
 @Controller
 public class CheckOutController {
-    @Autowired
-    private ItemServiceImpl itemService;
 
     @Autowired
     private CartServiceImpl cartService;
@@ -33,7 +33,7 @@ public class CheckOutController {
         int num = 0;
         List<Cart> cartList = cartService.findAllByUid(uid);
         for(Cart c : cartList){
-            totalPrice+= c.getNum()*(itemService.findById(c.getIid()).getPrice());
+            totalPrice+= c.getNum()*c.getPrice();
             num+=c.getNum();
         }
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
@@ -41,6 +41,15 @@ public class CheckOutController {
         model.addAttribute("totalPrice","￥"+decimalFormat.format(totalPrice));
         model.addAttribute("num",num);
 
-        return new ModelAndView("index");
+        model.addAttribute("cartList",cartService.findAll());
+
+        return new ModelAndView("checkout");
+    }
+
+    @ResponseBody
+    @PostMapping("/cartEditState")
+    public String deleteCart(Integer id){
+        cartService.deleteById(id);
+        return "success";
     }
 }

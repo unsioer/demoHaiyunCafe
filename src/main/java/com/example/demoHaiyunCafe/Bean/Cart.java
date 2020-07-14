@@ -18,6 +18,40 @@ public class Cart {
     @Column(nullable = false)
     private Integer num;
 
+    @Column(nullable =  false)
+    private String itemName;
+
+    @Column(nullable = false)
+    private Integer price;
+
+    @Column(nullable = true)
+    private String picturepath;
+
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public String getPicturepath() {
+        return picturepath;
+    }
+
+    public void setPicturepath(String picturepath) {
+        this.picturepath = picturepath;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -25,12 +59,15 @@ public class Cart {
     public Cart(){
 
     }
-    public Cart(Integer iid, Integer uid, Integer num) {
+
+    public Cart(Integer iid, Integer uid, Integer num, String itemName, Integer price, String picturepath) {
         this.iid = iid;
         this.uid = uid;
         this.num = num;
+        this.itemName = itemName;
+        this.price = price;
+        this.picturepath = picturepath;
     }
-
 
     public void setId(Integer id) {
         this.id = id;
