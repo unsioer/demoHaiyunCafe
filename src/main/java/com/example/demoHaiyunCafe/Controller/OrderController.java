@@ -1,0 +1,42 @@
+package com.example.demoHaiyunCafe.Controller;
+
+import com.example.demoHaiyunCafe.Bean.Cart;
+import com.example.demoHaiyunCafe.Bean.Order;
+import com.example.demoHaiyunCafe.Service.CartServiceImpl;
+import com.example.demoHaiyunCafe.Service.OrderServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+@Controller
+public class OrderController {
+    @Autowired
+    OrderServiceImpl orderService;
+
+    @Autowired
+    CartServiceImpl cartService;
+
+    @PostMapping("/orderSubmit")
+    public ModelAndView orderSubmit(HttpSession session,Model model){
+        Integer uid =Integer.parseInt(session.getAttribute("userId").toString());
+        List<Cart>  cartList = cartService.findAllByUid(uid);
+
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        for(Cart cart:cartList){
+            Date date = new Date(System.currentTimeMillis());
+            Order order = new Order(cart.getUid(),cart.getIid(),cart.getItemName(),cart.getPrice(),cart.getNum()
+            ,"未支付",formatter.format(date));
+            orderService.saveOrUpdateOrder(order);
+        }
+        cartService.deleteAllByUid(uid);
+        return new ModelAndView("checkout","orderSubmitModel",model);
+    }
+}
