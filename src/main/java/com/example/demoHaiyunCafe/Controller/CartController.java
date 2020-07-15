@@ -40,6 +40,22 @@ public class CartController {
     }
 
     @ResponseBody
+    @PostMapping("/setCartItemNum{iid},{num}")
+    public String setCartItemNum(@PathVariable(required = true)Integer iid, @PathVariable(required = true)Integer num, HttpSession session){
+        Integer uid =Integer.parseInt(session.getAttribute("userId").toString());
+        Cart cart = cartService.findByUidAndIid(uid,iid);
+        System.out.println(iid+','+num);
+        if(cart!=null){
+            cart.setNum(num);
+            cartService.saveOrUpdateCart(cart);
+        }
+        else{
+
+        }
+        return "success";
+    }
+
+    @ResponseBody
     @PostMapping("/emptyCart")
     public String emptyCart(HttpSession session){
         Integer uid =Integer.parseInt(session.getAttribute("userId").toString());

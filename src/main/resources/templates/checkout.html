@@ -82,7 +82,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--							<li><p>FREE delivery</p></li>-->
 						</ul>
 							 <div class="delivery">
-							 <p th:text="数量 +'：'+${cart.getNum()}"></p><br><br><br>
+								 <div style="width: 160px">
+									 <input style="width: 50px; height: 38px; border: 2px white; float: left;" type="button" value="-" th:onclick="'javascript:minus(this,'+${cart.getIid()}+','+${cart.getNum()}+');'" />
+									 <input style="text-align: center; width: 50px; height: 38px; float: left;" type="text" th:value="${cart.getNum()}" th:onblur="'javascript:checkNumber(this,'+${cart.getIid()}+');'" />
+									 <input style="width: 50px; height: 38px; border: 2px white;" type="button" value="+" th:onclick="'javascript:add(this,'+${cart.getIid()}+','+${cart.getNum()}+');'" />
+								 </div>
+								 <!--p th:text="数量 +'：'+${cart.getNum()}"></p><br><br><br-->
 							 <span th:text="价格+'：'+${cart.getNum()*cart.getPrice()}">价格 : 10.0元</span>
 							 <div class="clearfix"></div>
 				        </div>	
@@ -92,7 +97,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				  </div>
 			 </div>
 			<div class="contact-grid">
-				<input type="submit" value="结算"/>
+				<input type="submit" class="btn btn-success btn-lg col-xs-offset-10 col-xs-2" value="结&nbsp;算"/>
 			</div>
 		</form>
 	</div>
@@ -157,6 +162,48 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				alert("您尚未登录或您的登录信息已过期，请重新登录!");
 			}
 		});
+	}
+	function setCartItemNum(iid,num){
+		$.ajax({
+			url:"/setCartItemNum"+iid+","+num,
+			type:"POST",
+			contentType: "application/json; charset=utf-8",
+			success: function(msg){
+				window.location.reload();
+			},
+			error: function(){
+				alert("您尚未登录或您的登录信息已过期，请重新登录!");
+			}
+		});
+	}
+
+	function minus(obj,iid,num) {
+		if ($(obj).next().val() == '') {
+			$(obj).next().val(1);
+		}
+		if(num>1)
+		{
+			$(obj).next().val(parseInt($(obj).next().val()) - 1);
+			$(obj).next().val($(obj).next().val());
+			setCartItemNum(iid,num-1);
+		}
+	};
+
+	function add(obj,iid,num) {
+		if ($(obj).prev().val() == '') {
+			$(obj).prev().val(1);
+		}
+		$(obj).prev().val(parseInt($(obj).prev().val()) + 1);
+		$(obj).prev().val($(obj).prev().val());
+		setCartItemNum(iid,num+1);
+	};
+
+	function checkNumber(obj,iid) {
+		var reg = /^[1-9]\d*$/;
+		if(!reg.test($(obj).val()) || $(obj).val()==''){
+			$(obj).val(1);
+		}
+		setCartItemNum(iid,$(obj).val());
 	}
 	/*]]>*/
 </script>
