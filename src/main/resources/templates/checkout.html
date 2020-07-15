@@ -128,6 +128,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		$("#pageHTML").html(pageHTML);
 	});
 
+	$(document).ready(function(){
+		var message2=[[${isSuccess}]];
+
+		if(message2!=null) {
+			alert(message2)
+		}
+
+	})
 	/*<![CDATA[*/
 	function updateState(id,state,commendState){
 		var deleteTag;

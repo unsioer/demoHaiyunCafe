@@ -46,10 +46,10 @@ public class OrderController {
             if(item.getNumber()-cart.getNum()>=0){
                 item.setNumber(item.getNumber()-cart.getNum());
                 itemService.saveOrUpdateItem(item);
-                model.addAttribute("isSuccess",true);
+                model.addAttribute("isSuccess","提交成功");
             }
             else
-                model.addAttribute("isSuccess",false);
+                model.addAttribute("isSuccess","库存不足");
         }
         cartService.deleteAllByUid(uid);
 
