@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,6 +38,13 @@ public class OrderController {
             orderService.saveOrUpdateOrder(order);
         }
         cartService.deleteAllByUid(uid);
+
+        Integer num =0;
+        Integer totalPrice =0;
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        model.addAttribute("totalPrice","￥"+decimalFormat.format(totalPrice));
+        model.addAttribute("num",num);
+
         return new ModelAndView("checkout","orderSubmitModel",model);
     }
 }
