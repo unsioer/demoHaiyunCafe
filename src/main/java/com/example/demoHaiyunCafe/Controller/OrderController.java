@@ -1,8 +1,10 @@
 package com.example.demoHaiyunCafe.Controller;
 
 import com.example.demoHaiyunCafe.Bean.Cart;
+import com.example.demoHaiyunCafe.Bean.Item;
 import com.example.demoHaiyunCafe.Bean.Order;
 import com.example.demoHaiyunCafe.Service.CartServiceImpl;
+import com.example.demoHaiyunCafe.Service.ItemServiceImpl;
 import com.example.demoHaiyunCafe.Service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,9 @@ public class OrderController {
     @Autowired
     CartServiceImpl cartService;
 
+    @Autowired
+    ItemServiceImpl itemService;
+
     @PostMapping("/orderSubmit")
     public ModelAndView orderSubmit(HttpSession session,Model model){
         Integer uid =Integer.parseInt(session.getAttribute("userId").toString());
@@ -36,6 +41,15 @@ public class OrderController {
             Order order = new Order(cart.getUid(),cart.getIid(),cart.getItemName(),cart.getPrice(),cart.getNum()
             ,"未支付",formatter.format(date));
             orderService.saveOrUpdateOrder(order);
+
+            Item item = itemService.findById(cart.getIid());
+            if(item.getNumber()-cart.getNum()>=0){
+                item.setNumber(item.getNumber()-cart.getNum());
+                itemService.saveOrUpdateItem(item);
+                model.addAttribute("isSuccess",true);
+            }
+            else
+                model.addAttribute("isSuccess",false);
         }
         cartService.deleteAllByUid(uid);
 
