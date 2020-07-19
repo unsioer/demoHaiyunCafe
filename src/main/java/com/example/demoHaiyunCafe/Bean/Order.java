@@ -32,10 +32,13 @@ public class Order {
     @Column(nullable = false,length = 20)
     private String orderdate;
 
+    @Column(nullable = false,length = 20)
+    private String userAddress;
+
     public Order(){
 
     }
-    public Order(Integer uid, Integer iid, String itemname, Integer itemprice, Integer itemnum, String orderstate, String orderdate) {
+    public Order(Integer uid, Integer iid, String itemname, Integer itemprice, Integer itemnum, String orderstate, String orderdate,String userAddress) {
         this.uid = uid;
         this.iid = iid;
         this.itemname = itemname;
@@ -43,6 +46,15 @@ public class Order {
         this.itemnum = itemnum;
         this.orderstate = orderstate;
         this.orderdate = orderdate;
+        this.userAddress = userAddress;
+    }
+
+    public String getUserAddress() {
+        return userAddress;
+    }
+
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
     }
 
     public Integer getId() {

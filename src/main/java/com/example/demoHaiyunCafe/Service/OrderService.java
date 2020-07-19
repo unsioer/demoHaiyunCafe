@@ -18,4 +18,6 @@ public interface OrderService {
     void deleteById(Integer id);
 
     List<Order> findAllByUid(Integer uid);
+
+    List<Order> findAllByUserAddress(String userAddress);
 }

@@ -48,4 +48,11 @@ public class OrderServiceImpl implements OrderService{
     public List<Order> findAllByUid(Integer uid){
         return orderRepository.findAllByUid(uid);
     }
+
+    @Override
+    @Transactional
+    public List<Order> findAllByUserAddress(String userAddress){
+        return orderRepository.findAllByUserAddress(userAddress);
+    }
+
 }
