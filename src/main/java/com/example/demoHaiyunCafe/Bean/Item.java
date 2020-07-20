@@ -20,9 +20,7 @@ public class Item {
     private Integer price;
     @Column(nullable = true)
     private String picturepath;
-
-    //欢迎度，不作为数据库实体属性
-    @Column(nullable = true)
+    
     private Integer popularity;
 
     public Integer getId() {

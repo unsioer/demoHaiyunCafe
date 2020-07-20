@@ -19,6 +19,8 @@ import org.springframework.core.io.ResourceLoader;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -71,8 +73,7 @@ public class ItemController {
         if (pageNum == null){
             pageNum = 1;
         }
-        Sort sort = Sort.by(Sort.Direction.ASC, "id");
-        Pageable pageable = PageRequest.of(pageNum - 1, 20, sort);
+        Pageable pageable = PageRequest.of(pageNum - 1, 20, Sort.unsorted());
 
         Page<Item> page = listConvertToPage(itemList,pageable);
         model.addAttribute("pageInfo",page);
@@ -124,12 +125,11 @@ public class ItemController {
         if (pageNum == null){
             pageNum = 1;
         }
-        for (Item i:itemList)
-        {
+        for (Item i:itemList) {
             i.setPopularity(itemService.findItemPopularity(i.getId()));
         }
-        Sort sort = Sort.by(Sort.Direction.DESC, "price");
-        Pageable pageable = PageRequest.of(pageNum - 1, 20, sort);
+        itemList.sort(Comparator.comparing(Item::getPopularity).reversed());
+        Pageable pageable = PageRequest.of(pageNum - 1, 20, Sort.unsorted());
 
         Page<Item> page = listConvertToPage(itemList,pageable);
         model.addAttribute("pageInfo",page);
