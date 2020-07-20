@@ -14,5 +14,5 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `user`(`id`,`username`,`password`,`authority`) VALUES(1,'admin','admin','administrator');
-INSERT INTO `user`(`id`,`username`,`password`,`authority`,`email`,`phone`) VALUES(2,'test','test','user','test@example.com','13000000000');
-INSERT INTO `user`(`id`,`username`,`password`,`authority`,`email`,`phone`) VALUES(3,'test2','test2','user','test2@example.com','13000000001');
+INSERT INTO `user`(`id`,`username`,`password`,`authority`,`email`,`phone`,`address`) VALUES(2,'test','test','user','test@example.com','13000000000','克莱登大学');
+INSERT INTO `user`(`id`,`username`,`password`,`authority`,`email`,`phone`,`address`) VALUES(3,'test2','test2','user','test2@example.com','13000000001','加里敦大学');
