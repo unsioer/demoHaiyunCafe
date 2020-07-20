@@ -25,7 +25,20 @@ public class ItemServiceImpl implements ItemService{
     public Item findById(Integer id){
        return itemRepository.findById(id).get();
     }
+    
+    @Override
+    @Transactional
+    public Item findByItemname(String itemname){
+        return itemRepository.findByItemname(itemname);
+    }
 
+    @Override
+    @Transactional
+    public long  countItem()
+    {
+    	return itemRepository.count();
+    }
+    
     @Override
     @Transactional
     public Item saveOrUpdateItem(Item item){
@@ -45,11 +58,7 @@ public class ItemServiceImpl implements ItemService{
         itemRepository.deleteById(id);
     }
 
-    @Override
-    @Transactional
-    public Item findByItemname(String itemname){
-        return itemRepository.findByItemname(itemname);
-    }
+
 
     @Override
     @Transactional
@@ -68,4 +77,5 @@ public class ItemServiceImpl implements ItemService{
     public List<Item> findAllByItemname(String itemname){
         return itemRepository.findAllByItemname(itemname);
     }
+    
 }
