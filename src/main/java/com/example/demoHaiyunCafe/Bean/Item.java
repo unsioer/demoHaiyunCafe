@@ -21,6 +21,10 @@ public class Item {
     @Column(nullable = true)
     private String picturepath;
 
+    //欢迎度，不作为数据库实体属性
+    @Column(nullable = true)
+    private Integer popularity;
+
     public Integer getId() {
         return id;
     }
@@ -64,6 +68,12 @@ public class Item {
     public String getPicturepath() {return picturepath;}
 
     public void setPicturepath(String picturepath) {this.picturepath=picturepath;}
+
+    public Integer getPopularity() { return popularity; }
+
+    public void setPopularity(Integer popularity) {
+        this.popularity = popularity;
+    }
 
     public Item(String itemname, String type, Integer number, Integer price) {
         this.itemname = itemname;
