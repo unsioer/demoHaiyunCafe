@@ -66,7 +66,7 @@ public class UserController {
             }
             model.addAttribute("user",user1);
             //新增之后跳转至用户列表界面
-            ModelAndView modelAndView = new ModelAndView("redirect:/userManage_0_0_0");
+            ModelAndView modelAndView = new ModelAndView("redirect:/userManage");
             return modelAndView;
         }
         return new ModelAndView("user/userAdd","userAddModel",model );
