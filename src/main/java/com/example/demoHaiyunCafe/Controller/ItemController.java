@@ -19,6 +19,8 @@ import org.springframework.core.io.ResourceLoader;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,7 +41,7 @@ public class ItemController {
 
         List<Item> temp = itemService.findAll();
 
-        List<Item>  itemList = new ArrayList<>();
+        List<Item>  itemList;
         List<Item>  itemListName ;
         List<Item>  itemListType ;
         List<Item>  itemListPrice ;
@@ -71,8 +73,7 @@ public class ItemController {
         if (pageNum == null){
             pageNum = 1;
         }
-        Sort sort = Sort.by(Sort.Direction.ASC, "id");
-        Pageable pageable = PageRequest.of(pageNum - 1, 20, sort);
+        Pageable pageable = PageRequest.of(pageNum - 1, 20, Sort.unsorted());
 
         Page<Item> page = listConvertToPage(itemList,pageable);
         model.addAttribute("pageInfo",page);
@@ -80,6 +81,63 @@ public class ItemController {
         model.addAttribute("item", item);
         return new ModelAndView("item/itemManage","itemModel",model );
     }
+
+    @GetMapping("/itemPopularity")
+    public ModelAndView listPopularity(Item item, Integer pageNum, Model model) {
+        //model.addAttribute("title","菜品管理");
+        List<String> itemTypeList = new ArrayList<String>();
+        itemTypeList.add("饮料");
+        itemTypeList.add("小吃");
+        itemTypeList.add("主食");
+        model.addAttribute("itemTypeList",itemTypeList );
+
+        List<Item> temp = itemService.findAll();
+
+        List<Item>  itemList;
+        List<Item>  itemListName ;
+        List<Item>  itemListType ;
+        List<Item>  itemListPrice ;
+
+        if(item.getItemname()!=null&&!item.getItemname().equals("")){
+            itemListName = (itemService.findAllByItemname(item.getItemname()));
+        }
+        else
+            itemListName = temp;
+        if(item.getType()!=null&& !item.getType().equals("0")){
+            itemListType = itemService.findAllByType(item.getType());
+        }
+        else
+            itemListType = temp;
+        if(item.getPrice()!=null){
+            itemListPrice = itemService.findAllByPrice(item.getPrice());
+        }
+        else
+            itemListPrice = temp;
+
+        itemList = itemListName.stream()
+                .filter(t->itemListType.contains(t))
+                .collect(Collectors.toList());
+
+        itemList = itemList.stream()
+                .filter(t->itemListPrice.contains(t))
+                .collect(Collectors.toList());
+
+        if (pageNum == null){
+            pageNum = 1;
+        }
+        for (Item i:itemList) {
+            i.setPopularity(itemService.findItemPopularity(i.getId()));
+        }
+        itemList.sort(Comparator.comparing(Item::getPopularity).reversed());
+        Pageable pageable = PageRequest.of(pageNum - 1, 20, Sort.unsorted());
+
+        Page<Item> page = listConvertToPage(itemList,pageable);
+        model.addAttribute("pageInfo",page);
+
+        model.addAttribute("item", item);
+        return new ModelAndView("item/itemPopularity","itemModel",model );
+    }
+
 
     @GetMapping("/itemEdit")
     public ModelAndView itemEditGet(Model model,Item item){
