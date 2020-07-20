@@ -3,6 +3,8 @@ package com.example.demoHaiyunCafe.Service;
 import com.example.demoHaiyunCafe.Bean.Order;
 import com.example.demoHaiyunCafe.Mapper.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,4 +57,9 @@ public class OrderServiceImpl implements OrderService{
         return orderRepository.findAllByUserAddress(userAddress);
     }
 
+//    @Override
+    @Transactional
+    public Page<Order> findAll(Pageable pageable){
+        return orderRepository.findAll(pageable);
+    }
 }

@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="ibox-content" style="display: block;">
-                            <form action="itemManage_0_0_0" th:action="@{itemManage_0_0_0}" th:object="${item}">
+                            <form action="itemManage" th:action="@{itemManage}" th:object="${item}">
                                 <div class="row">
                                     <div class="col-sm-2 m-b-xs">
                                         <input placeholder="菜单名称" class="form-control" type="text" th:field="*{itemname} "/>
@@ -115,7 +115,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="item : ${itemList}">
+                                    <tr th:each="item : ${pageInfo}">
                                         <td th:text="${item?.id}">Onions</td>
                                         <td th:text="${item?.itemname}">Onions</td>
                                         <td th:text="${item?.type}">Onions</td>
@@ -137,6 +137,14 @@
                                     </tr>
                                     </tfoot>
                                 </table>
+                                <div class="pagelist">
+                                    <p>当前<span th:text="${pageInfo.getNumber()} + 1"></span>页,总<span th:text="${pageInfo.totalPages}"></span>页
+                                        　　　　　　　　　　　　　　　　　共<span th:text="${pageInfo.totalElements}"></span>条记录
+                                        <a th:href="@{/itemManage}">首页</a>
+                                        <a th:href="@{/itemManage(pageNum = ${pageInfo.hasPrevious()} ? ${pageInfo.getNumber() } : 1)}">上一页</a>
+                                        <a th:href="@{/itemManage(pageNum = ${pageInfo.hasNext()} ? ${pageInfo.getNumber()} + 2 : ${pageInfo.totalPages})}">下一页</a>
+                                        <a th:href="@{/itemManage(pageNum = ${pageInfo.totalPages})}">尾页</a></p>
+                                </div>
                             </div>
                         </div>
                     </div>

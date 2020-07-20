@@ -7,6 +7,7 @@ import com.example.demoHaiyunCafe.Bean.User;
 import com.example.demoHaiyunCafe.Service.UserService;
 import com.example.demoHaiyunCafe.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,17 +22,19 @@ public class UserController {
     private UserService userService;
 
 
-    @GetMapping("/userManage_{pageCurrent}_{pageSize}_{pageCount}")
-    public ModelAndView list(User user, @PathVariable(required = false) Integer pageCurrent,
-                             @PathVariable(required = false) Integer pageSize,
-                             @PathVariable(required = false) Integer pageCount,
-                             Model model) {
+    @GetMapping("/userManage")
+    public ModelAndView list(User user, Integer pageNum, Model model) {
 
         List<User> userList = userService.findAll();
 
-        model.addAttribute("userList",userList);
-        String pageHTML = PageUtil.getPageContent("itemManage_{pageCurrent}_{pageSize}_{pageCount}", pageCurrent, pageSize, pageCount);
-        model.addAttribute("pageHTML", pageHTML);
+        if (pageNum == null){
+            pageNum = 1;
+        }
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");
+        Pageable pageable = PageRequest.of(pageNum - 1, 20, sort);
+
+        Page<User> page = listConvertToPage(userList,pageable);
+        model.addAttribute("pageInfo",page);
 
         return new ModelAndView("user/userManage","userModel",model );
     }
@@ -94,4 +97,9 @@ public class UserController {
         return "success";
     }
 
+    public <T> Page<T> listConvertToPage(List<T> list, Pageable pageable) {
+        int start = (int)pageable.getOffset();
+        int end = (start + pageable.getPageSize()) > list.size() ? list.size() : ( start + pageable.getPageSize());
+        return new PageImpl<T>(list.subList(start, end), pageable, list.size());
+    }
 }

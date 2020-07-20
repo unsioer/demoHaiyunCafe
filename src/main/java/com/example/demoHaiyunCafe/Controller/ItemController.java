@@ -2,11 +2,13 @@ package com.example.demoHaiyunCafe.Controller;
 
 
 import com.example.demoHaiyunCafe.Bean.Item;
+import com.example.demoHaiyunCafe.Bean.Order;
 import com.example.demoHaiyunCafe.Mapper.ItemRepository;
 import com.example.demoHaiyunCafe.Service.ItemServiceImpl;
 import com.example.demoHaiyunCafe.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.data.domain.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
@@ -26,11 +28,8 @@ public class ItemController {
     private ItemServiceImpl itemService;
 
 
-    @GetMapping("/itemManage_{pageCurrent}_{pageSize}_{pageCount}")
-    public ModelAndView list(Item item, @PathVariable(required = false) Integer pageCurrent,
-                             @PathVariable(required = false) Integer pageSize,
-                             @PathVariable(required = false) Integer pageCount,
-                             Model model) {
+    @GetMapping("/itemManage")
+    public ModelAndView list(Item item, Integer pageNum, Model model) {
         //model.addAttribute("title","菜品管理");
         List<String> itemTypeList = new ArrayList<String>();
         itemTypeList.add("饮料");
@@ -69,9 +68,15 @@ public class ItemController {
                     .filter(t->itemListPrice.contains(t))
                     .collect(Collectors.toList());
 
-        model.addAttribute("itemList",itemList);
-        String pageHTML = PageUtil.getPageContent("itemManage_{pageCurrent}_{pageSize}_{pageCount}?title=" + item.getItemname() + "&type=" + item.getType() + "&Price", pageCurrent, pageSize, pageCount);
-        model.addAttribute("pageHTML", pageHTML);
+        if (pageNum == null){
+            pageNum = 1;
+        }
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");
+        Pageable pageable = PageRequest.of(pageNum - 1, 20, sort);
+
+        Page<Item> page = listConvertToPage(itemList,pageable);
+        model.addAttribute("pageInfo",page);
+
         model.addAttribute("item", item);
         return new ModelAndView("item/itemManage","itemModel",model );
     }
@@ -112,4 +117,9 @@ public class ItemController {
         return "success";
     }
 
+    public <T> Page<T> listConvertToPage(List<T> list, Pageable pageable) {
+        int start = (int)pageable.getOffset();
+        int end = (start + pageable.getPageSize()) > list.size() ? list.size() : ( start + pageable.getPageSize());
+        return new PageImpl<T>(list.subList(start, end), pageable, list.size());
+    }
 }

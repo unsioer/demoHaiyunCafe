@@ -98,7 +98,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="user : ${userList}">
+                                    <tr th:each="user : ${pageInfo}">
                                         <td th:text="${user?.id}">Onions</td>
                                         <td th:text="${user?.username}">Onions</td>
                                         <td th:text="${user?.password}">Onions</td>
@@ -120,6 +120,14 @@
                                     </tr>
                                     </tfoot>
                                 </table>
+                                <div class="pagelist">
+                                    <p>当前<span th:text="${pageInfo.getNumber()} + 1"></span>页,总<span th:text="${pageInfo.totalPages}"></span>页
+                                        　　　　　　　　　　　　　　　　　共<span th:text="${pageInfo.totalElements}"></span>条记录
+                                        <a th:href="@{/userManage}">首页</a>
+                                        <a th:href="@{/userManage(pageNum = ${pageInfo.hasPrevious()} ? ${pageInfo.getNumber() } : 1)}">上一页</a>
+                                        <a th:href="@{/userManage(pageNum = ${pageInfo.hasNext()} ? ${pageInfo.getNumber()} + 2 : ${pageInfo.totalPages})}">下一页</a>
+                                        <a th:href="@{/userManage(pageNum = ${pageInfo.totalPages})}">尾页</a></p>
+                                </div>
                             </div>
                         </div>
                     </div>

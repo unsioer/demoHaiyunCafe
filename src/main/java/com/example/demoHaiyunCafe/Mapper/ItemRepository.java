@@ -18,4 +18,5 @@ public interface ItemRepository extends JpaRepository<Item,Integer> {
 
     //根据价格查询
     List<Item> findAllByPrice(Integer price);
+
 }
