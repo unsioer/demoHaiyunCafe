@@ -20,4 +20,7 @@ public interface OrderService {
     List<Order> findAllByUid(Integer uid);
     
     List<Order> findAllByIid(Integer uid);
+
+    List<Order> findAllByUserAddress(String userAddress);
+
 }

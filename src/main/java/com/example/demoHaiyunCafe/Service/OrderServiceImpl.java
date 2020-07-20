@@ -52,4 +52,12 @@ public class OrderServiceImpl implements OrderService{
     public List<Order> findAllByIid(Integer iid){
         return orderRepository.findAllByIid(iid);
     }   
+
+
+    @Override
+    @Transactional
+    public List<Order> findAllByUserAddress(String userAddress){
+        return orderRepository.findAllByUserAddress(userAddress);
+    }
+
 }
