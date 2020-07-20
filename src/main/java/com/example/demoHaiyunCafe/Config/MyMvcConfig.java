@@ -16,8 +16,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class MyMvcConfig implements WebMvcConfigurer {
-    @Value("${file.upload.path}")
-    private String filePath;
+    @Value("${file.upload.relative-path}")
+    private String fileRelativePath;
 
     //所有的WebMvcConfigurer组件都会一起起作用
     @Bean //将组件注册在容器
@@ -40,7 +40,8 @@ public class MyMvcConfig implements WebMvcConfigurer {
             }
             @Override
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
-                registry.addResourceHandler("/upload/**").addResourceLocations("file:/"+filePath);
+                //System.out.println("file:///"+System.getProperty("user.dir").replace("\\","//")+fileRelativePath.replace("/","//")+"//");
+                registry.addResourceHandler("/upload/**").addResourceLocations("file:///"+System.getProperty("user.dir").replace("\\","/")+fileRelativePath.replace("/","//")+"//");
             }
         };
 

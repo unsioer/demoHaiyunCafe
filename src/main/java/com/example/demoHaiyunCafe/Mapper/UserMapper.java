@@ -1,11 +1,8 @@
 package com.example.demoHaiyunCafe.Mapper;
 
-import com.example.demoHaiyunCafe.Bean.Item;
 import com.example.demoHaiyunCafe.Bean.User;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
 
 /**
@@ -31,7 +28,6 @@ public interface UserMapper {
     /**
      * 查询用户名是否存在，若存在，不允许注册
      * 注解@Param(value) 若value与可变参数相同，注解可省略
-     * 注解@Results  列名和字段名相同，注解可省略
      * @return
      */
     @Select(value = "select * from user where authority = 'user'")

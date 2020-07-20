@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="ibox-content" style="display: block;">
-                            <form action="orderManage_0_0_0" th:action="@{orderManage_0_0_0}" th:object="${order}">
+                            <form action="orderManage" th:action="@{orderManage}" th:object="${order}">
                                 <div class="row">
                                     <div class="col-sm-2 m-b-xs">
                                         <input placeholder="用户号" class="form-control" type="text" th:field="*{uid} "/>
@@ -103,19 +103,21 @@
                                         <th width="10%" style="text-align: center">数量</th>
                                         <th width="10%" style="text-align: center">总价</th>
                                         <th width="20%" style="text-align: center">用户地址</th>
+                                        <th width="15%" style="text-align: center">下单时间</th>
                                         <!--                                    <！--th width="15%">更新时间</th>
                                                                                 <th width="10%">推荐状态</th>-->
 <!--                                        <th style="text-align: center">操作</th>-->
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="order : ${orderList}">
+                                    <tr th:each="order : ${pageInfo}">
                                         <td th:text="${order?.id}">Onions</td>
                                         <td th:text="${order?.uid}">Onions</td>
                                         <td th:text="${order?.itemname}">Onions</td>
                                         <td th:text="${order?.itemnum}">Onions</td>
                                         <td th:text="${order?.itemnum*order?.itemprice}">Onions</td>
                                         <td th:text="${order?.userAddress}">Onions</td>
+                                        <td th:text="${order?.orderdate}">Onions</td>
 <!--                                        <td>-->
 <!--                                            <a th:href="@{'itemEdit?id='+${item?.id}}" title="修改"><i class="fa fa-edit text-navy"></i></a>-->
 <!--                                            &nbsp;&nbsp;&nbsp;&nbsp;-->
@@ -131,6 +133,14 @@
                                     </tr>
                                     </tfoot>
                                 </table>
+                                <div class="pagelist">
+                                    <p>当前<span th:text="${pageInfo.getNumber()} + 1"></span>页,总<span th:text="${pageInfo.totalPages}"></span>页
+                                        　　　　　　　　　　　　　　　　　共<span th:text="${pageInfo.totalElements}"></span>条记录
+                                        <a th:href="@{/orderManage}">首页</a>
+                                        <a th:href="@{/orderManage(pageNum = ${pageInfo.hasPrevious()} ? ${pageInfo.getNumber() } : 1)}">上一页</a>
+                                        <a th:href="@{/orderManage(pageNum = ${pageInfo.hasNext()} ? ${pageInfo.getNumber()} + 2 : ${pageInfo.totalPages})}">下一页</a>
+                                        <a th:href="@{/orderManage(pageNum = ${pageInfo.totalPages})}">尾页</a></p>
+                                </div>
                             </div>
                         </div>
                     </div>
