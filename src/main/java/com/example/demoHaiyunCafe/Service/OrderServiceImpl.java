@@ -48,4 +48,8 @@ public class OrderServiceImpl implements OrderService{
     public List<Order> findAllByUid(Integer uid){
         return orderRepository.findAllByUid(uid);
     }
+    
+    public List<Order> findAllByIid(Integer iid){
+        return orderRepository.findAllByIid(iid);
+    }   
 }
