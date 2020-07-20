@@ -53,10 +53,10 @@
                         <div class="ibox-content" style="display: block;">
                             <form action="itemManage" th:action="@{itemManage}" th:object="${item}">
                                 <div class="row">
-                                    <div class="col-sm-2 m-b-xs">
+                                    <div class="col-sm-4 m-b-xs">
                                         <input placeholder="菜单名称" class="form-control" type="text" th:field="*{itemname} "/>
                                     </div>
-                                    <div class="col-sm-2 m-b-xs">
+                                    <div class="col-sm-4 m-b-xs">
                                        <select class="form-control"  th:field="*{type} ">
                                             <option value="0">--请选择菜品分类--</option>
                                             <option th:each="itemtype : ${itemTypeList}" th:value="${itemtype?.toString()}" th:text="${itemtype?.toString()}" th:selected="${itemtype?.toString()==item?.type}">分类</option>
@@ -79,9 +79,7 @@
                             </form>
                             <div class="row">
                                 <div class="col-sm-6 m-b-xs">
-                                    <a th:href="@{itemEdit}" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Refresh inbox"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;&nbsp;新增菜品&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                                </div>
-                                <div class="col-sm-6 m-b-xs">
+                                    <a th:href="@{itemEdit}" class="btn btn-primary" data-toggle="tooltip" data-placement="left" title="" data-original-title="Refresh inbox"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;&nbsp;新增菜品&nbsp;&nbsp;&nbsp;&nbsp;</a>
                                 </div>
                             </div>
 

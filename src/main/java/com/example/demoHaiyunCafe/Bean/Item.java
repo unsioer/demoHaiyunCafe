@@ -20,7 +20,7 @@ public class Item {
     private Integer price;
     @Column(nullable = true)
     private String picturepath;
-    
+
     private Integer popularity;
 
     public Integer getId() {
