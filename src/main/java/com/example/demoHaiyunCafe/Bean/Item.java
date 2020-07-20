@@ -20,8 +20,6 @@ public class Item {
     private Integer price;
     @Column(nullable = true)
     private String picturepath;
-    
-    private Integer popularity;
 
     public Integer getId() {
         return id;
@@ -66,12 +64,6 @@ public class Item {
     public String getPicturepath() {return picturepath;}
 
     public void setPicturepath(String picturepath) {this.picturepath=picturepath;}
-
-    public Integer getPopularity() { return popularity; }
-
-    public void setPopularity(Integer popularity) {
-        this.popularity = popularity;
-    }
 
     public Item(String itemname, String type, Integer number, Integer price) {
         this.itemname = itemname;

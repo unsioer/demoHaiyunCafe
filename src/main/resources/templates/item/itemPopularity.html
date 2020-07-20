@@ -61,18 +61,24 @@
                                         <th width="20%" style="text-align: center">图片</th>
                                         <th width="10%" style="text-align: center">价格</th>
                                         <th width="15%" style="text-align: center">库存数量</th>
-                                        <th width="15%" style="text-align: center">购买量</th>
+<!--                                    <！--th width="15%">更新时间</th>
+                                        <th width="10%">推荐状态</th>-->
+                                        <th style="text-align: center">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="item : ${pageInfo}">
+                                    <tr th:each="item : ${itemList}">
                                         <td th:text="${item?.id}">Onions</td>
                                         <td th:text="${item?.itemname}">Onions</td>
                                         <td th:text="${item?.type}">Onions</td>
                                         <td><img th:src="@{${item?.picturepath}}" style="display: inline-block; width: 50%; height: auto;"/></td>
                                         <td th:text="${item?.price}">Onions</td>
                                         <td th:text="${item?.number}">Onions</td>
-                                        <td><b th:text="${item?.popularity}"></b></td>
+                                        <td>
+                                            <a th:href="@{'itemEdit?id='+${item?.id}}" title="修改"><i class="fa fa-edit text-navy"></i></a>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a href="#" th:onclick="'javascript:updateState('+${item?.id}+',2,0);'" title="删除"><i class="fa fa-trash-o text-navy"></i></a>
+                                        </td>
                                     </tr>
                                     </tbody>
                                     <tfoot>
@@ -83,14 +89,6 @@
                                     </tr>
                                     </tfoot>
                                 </table>
-                                <div class="pagelist">
-                                    <p>当前<span th:text="${pageInfo.getNumber()} + 1"></span>页,总<span th:text="${pageInfo.totalPages}"></span>页
-                                        　　　　　　　　　　　　　　　　　共<span th:text="${pageInfo.totalElements}"></span>条记录
-                                        <a th:href="@{/itemManage}">首页</a>
-                                        <a th:href="@{/itemManage(pageNum = ${pageInfo.hasPrevious()} ? ${pageInfo.getNumber() } : 1)}">上一页</a>
-                                        <a th:href="@{/itemManage(pageNum = ${pageInfo.hasNext()} ? ${pageInfo.getNumber()} + 2 : ${pageInfo.totalPages})}">下一页</a>
-                                        <a th:href="@{/itemManage(pageNum = ${pageInfo.totalPages})}">尾页</a></p>
-                                </div>
                             </div>
                         </div>
                     </div>

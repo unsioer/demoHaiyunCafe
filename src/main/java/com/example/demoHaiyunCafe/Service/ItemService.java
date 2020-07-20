@@ -8,7 +8,7 @@ public interface ItemService {
     //查找所有菜品
     List<Item> findAll();
 
-    Integer findItemPopularity(Integer iid);
+    long countItem();
     
     Item saveOrUpdateItem(Item item);
 
@@ -23,5 +23,6 @@ public interface ItemService {
     List<Item> findAllByType(String type);
 
     List<Item> findAllByPrice(Integer price);
+    
     
 }

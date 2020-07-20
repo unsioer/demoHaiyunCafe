@@ -40,7 +40,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
             }
             @Override
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
-                //System.out.println("file:///"+System.getProperty("user.dir").replace("\\","//")+fileRelativePath.replace("/","//")+"//");
+                System.out.println("file:///"+System.getProperty("user.dir").replace("\\","//")+fileRelativePath.replace("/","//"));
                 registry.addResourceHandler("/upload/**").addResourceLocations("file:///"+System.getProperty("user.dir").replace("\\","/")+fileRelativePath.replace("/","//")+"//");
             }
         };

@@ -1,9 +1,7 @@
 package com.example.demoHaiyunCafe.Service;
 
 import com.example.demoHaiyunCafe.Bean.Item;
-import com.example.demoHaiyunCafe.Bean.Order;
 import com.example.demoHaiyunCafe.Mapper.ItemRepository;
-import com.example.demoHaiyunCafe.Mapper.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,9 +13,6 @@ import java.util.Optional;
 public class ItemServiceImpl implements ItemService{
     @Autowired
     private ItemRepository itemRepository;
-
-    @Autowired
-    private OrderRepository orderRepository;
 
     @Override
     @Transactional
@@ -39,15 +34,9 @@ public class ItemServiceImpl implements ItemService{
 
     @Override
     @Transactional
-    public Integer findItemPopularity(Integer iid)
+    public long  countItem()
     {
-        List<Order> orderList=orderRepository.findAllByIid(iid);
-        Integer popularity=0;
-        for(Order order:orderList)
-        {
-            popularity+=order.getItemnum();
-        }
-    	return popularity;
+    	return itemRepository.count();
     }
     
     @Override

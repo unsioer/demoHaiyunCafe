@@ -902,8 +902,6 @@ li.bt-nn h6 {
   float: right;
 }
 
-
-
 .b-search {
   float: left;
   width: 33.33%;
@@ -943,11 +941,6 @@ i.sear{
   color: #fff;
   font-size: 0.85em;
 }
-#checkoutlink:link,#checkoutlink:visited,#checkoutlink:hover,#checkoutlink:active
-{
-	color:white;
-}
-
 i.ca-r{
   background: url(../img/ca-r.png) no-repeat 0px 0px;
   height: 26px;

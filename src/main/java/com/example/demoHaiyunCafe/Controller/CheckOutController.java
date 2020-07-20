@@ -45,7 +45,7 @@ public class CheckOutController {
         model.addAttribute("totalPrice","￥"+decimalFormat.format(totalPrice));
         model.addAttribute("num",num);
 
-        model.addAttribute("cartList",cartService.findAllByUid(uid));
+        model.addAttribute("cartList",cartService.findAll());
 
         return new ModelAndView("checkout");
     }
