@@ -22,6 +22,7 @@ public interface ItemRepository extends JpaRepository<Item,Integer> {
     
     List<Item> findAllByItemname(String itemname);
 
+    Item findAllById(Integer iid);
 
     //根据类型查询
     List<Item> findAllByType(String type);

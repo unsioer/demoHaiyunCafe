@@ -10,7 +10,7 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<Order,Integer> {
     List<Order> findAllByUid(Integer uid);
     
-    List<Order> findAllByIid(Integer uid);
+    List<Order> findAllByIid(Integer iid);
     
     List<Order> findAll();
 
