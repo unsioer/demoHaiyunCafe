@@ -23,13 +23,13 @@
 
 	<div class="container">
 		<div class="logo">
-			<a href="index.html"><img src="img/HaiyunCafe.png" class="img-responsive" alt=""></a>
+			<a href="index"><img src="img/HaiyunCafe.png" class="img-responsive" alt=""></a>
 		</div>
 		<div class="header-left">
 			<div class="head-nav">
 				<span class="menu"> </span>
 				<ul>
-					<li ><a href="index.html">主页</a></li>
+					<li><a href="index">主页</a></li>
 					<li><a href="/logout">登出</a></li>
 					<li class="active"><a href="/userProfileEdit">修改个人信息</a></li>
 					<div class="clearfix"> </div>
@@ -44,12 +44,12 @@
 				</script>
 				<!-- script-for-nav -->
 			</div>
-			<div class="header-right1">
-				<div class="cart box_1">
-					<a href="checkout.html">
-						<h3> <span class="simpleCart_total"> 0.00元 </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span> items)<img src="img/bag.png" alt=""></h3>
+			<div class="header-right1" >
+				<div class="cart box_1" action="checkout">
+					<a href="#">
+						<h3> <span type = "text" th:text="${totalPrice}">  </span> (<span type = "text" th:text="${num}">  </span> items)<img src="img/bag.png" alt=""></h3>
 					</a>
-					<p><a href="javascript:;" class="simpleCart_empty">清空购物车</a></p>
+					<p><a href="#" class="simpleCart_empty" th:onclick="'javascript:emptyCart();'">清空购物车</a></p>
 					<div class="clearfix"> </div>
 				</div>
 			</div>
@@ -70,8 +70,8 @@
 				 <input type="hidden" th:field="*{id}"/>
 				 <input style="color: black" readonly="readonly" type="text" placeholder="用户名" th:field="*{username}" required/>
 				 <input style="color: black" type="text" placeholder="密码" th:field="*{password}" required/>
-				 <input style="color: black" type="text" placeholder="电话号码" th:field="*{phone}" required/>
-				 <input style="color: black" type="text" placeholder="邮箱" th:field="*{email}" required/>
+				 <input style="color: black" type="text" placeholder="电话号码" th:field="*{phone}" required pattern="1[3|5|7|8|][0-9]{9}"/>
+				 <input style="color: black" type="text" placeholder="邮箱" th:field="*{email}" required pattern="^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$"/>
 				 <textarea style="color: black" placeholder="地址" th:field="*{address}" required></textarea>
 				 <input type="submit" value="提交"/>
 			 </form>

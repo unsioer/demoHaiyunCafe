@@ -21,9 +21,13 @@ import java.util.List;
 @Controller
 public class CheckOutController {
 
+	
+	
     @Autowired
     private CartServiceImpl cartService;
 
+
+    
     @GetMapping("/checkout")
     public ModelAndView userIndex(HttpSession session, Model model ){
         //购物车
@@ -41,7 +45,7 @@ public class CheckOutController {
         model.addAttribute("totalPrice","￥"+decimalFormat.format(totalPrice));
         model.addAttribute("num",num);
 
-        model.addAttribute("cartList",cartService.findAll());
+        model.addAttribute("cartList",cartService.findAllByUid(uid));
 
         return new ModelAndView("checkout");
     }

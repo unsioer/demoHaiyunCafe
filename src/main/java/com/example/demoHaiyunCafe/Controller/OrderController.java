@@ -6,10 +6,17 @@ import com.example.demoHaiyunCafe.Bean.Order;
 import com.example.demoHaiyunCafe.Service.CartServiceImpl;
 import com.example.demoHaiyunCafe.Service.ItemServiceImpl;
 import com.example.demoHaiyunCafe.Service.OrderServiceImpl;
+import com.example.demoHaiyunCafe.Service.UserService;
+
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +25,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.springframework.data.domain.Sort.Direction.ASC;
+import static org.springframework.data.domain.Sort.Direction.DESC;
 
 @Controller
 public class OrderController {
@@ -30,6 +41,9 @@ public class OrderController {
     @Autowired
     ItemServiceImpl itemService;
 
+    @Autowired
+    UserService userService;
+
     @PostMapping("/orderSubmit")
     public ModelAndView orderSubmit(HttpSession session,Model model){
         Integer uid =Integer.parseInt(session.getAttribute("userId").toString());
@@ -39,7 +53,7 @@ public class OrderController {
         for(Cart cart:cartList){
             Date date = new Date(System.currentTimeMillis());
             Order order = new Order(cart.getUid(),cart.getIid(),cart.getItemName(),cart.getPrice(),cart.getNum()
-            ,"未支付",formatter.format(date));
+            ,"未支付",formatter.format(date),userService.findById((long)uid).getAddress());
             orderService.saveOrUpdateOrder(order);
 
             Item item = itemService.findById(cart.getIid());
@@ -61,4 +75,52 @@ public class OrderController {
 
         return new ModelAndView("checkout","orderSubmitModel",model);
     }
+
+    @GetMapping("/orderManage")
+    public ModelAndView list(Order order,
+                             Integer pageNum,
+                             Model model) {
+
+//        PageHelper.startPage(pageNum,pageSize);
+
+        List<Order> temp = orderService.findAll();
+
+        List<Order>  orderList = new ArrayList<>();
+        List<Order> orderListAddress;
+        List<Order> orderListUid;
+        if(order.getUserAddress()!=null&&!order.getUserAddress().equals("")){
+            orderListAddress = orderService.findAllByUserAddress(order.getUserAddress());
+        }
+        else
+            orderListAddress = temp;
+        if(order.getUid()!=null){
+            orderListUid = orderService.findAllByUid(order.getUid());
+        }
+        else
+            orderListUid = temp;
+
+        orderList = orderListAddress.stream()
+                .filter(t->orderListUid.contains(t))
+                .collect(Collectors.toList());
+
+        if (pageNum == null){
+            pageNum = 1;
+        }
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");
+        Pageable pageable = PageRequest.of(pageNum - 1, 20, sort);
+
+        Page<Order> page = listConvertToPage(orderList,pageable);
+//        Page<Order> pageInfo = orderService.findAll(pageable);
+        model.addAttribute("pageInfo",page);
+
+        model.addAttribute("order", order);
+        return new ModelAndView("order/orderManage","orderModel",model );
+    }
+
+    public <T> Page<T> listConvertToPage(List<T> list, Pageable pageable) {
+        int start = (int)pageable.getOffset();
+        int end = (start + pageable.getPageSize()) > list.size() ? list.size() : ( start + pageable.getPageSize());
+        return new PageImpl<T>(list.subList(start, end), pageable, list.size());
+    }
+
 }
