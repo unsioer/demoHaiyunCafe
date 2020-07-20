@@ -12,5 +12,7 @@ public interface OrderRepository extends JpaRepository<Order,Integer> {
 
     List<Order> findAllByUserAddress(String userAddress);
 
+    List<Order> findAllByIid(Integer iid);
+
     Page<Order> findAll(Pageable pageable);
 }
