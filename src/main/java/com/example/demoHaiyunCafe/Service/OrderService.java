@@ -26,5 +26,7 @@ public interface OrderService {
 
     List<Integer> findMonthData(Integer year, Integer month);
 
+    List<Integer> findYearData(Integer year);
+
     List<String> findLast30DayData();
 }

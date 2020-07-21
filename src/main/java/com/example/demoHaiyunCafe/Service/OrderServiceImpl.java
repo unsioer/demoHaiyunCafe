@@ -50,6 +50,23 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     @Transactional
+    public List<Integer> findYearData(Integer year) { ;
+        String yearString = String.format("%04d", year) + "-";
+        System.out.println("Start to find.."+yearString);
+        List<Order> orderList=orderRepository.findAllByOrderdateContaining(yearString);
+        List<Integer> data = new ArrayList<Integer>();
+        System.out.println(data.size());
+        data.add(orderList.size());
+        Integer monthIncome=0;
+        for (Order order : orderList) {
+            monthIncome+= order.getItemnum()*order.getItemprice();
+        }
+        data.add(monthIncome);
+        return data;
+    }
+
+    @Override
+    @Transactional
     public List<String> findLast30DayData() {
         List<String> data = new ArrayList<String>();
         String dayOrderNumString="",dayIncomeString="";

@@ -17,3 +17,4 @@ INSERT INTO `user`(`id`,`username`,`password`,`authority`) VALUES(1,'admin','adm
 INSERT INTO `user`(`id`,`username`,`password`,`authority`,`email`,`phone`,`address`) VALUES(2,'test','test','user','test@example.com','13000000000','克莱登大学');
 INSERT INTO `user`(`id`,`username`,`password`,`authority`,`email`,`phone`,`address`) VALUES(3,'test2','test2','user','test2@example.com','13000000001','加里敦大学');
 INSERT INTO `user`(`id`,`username`,`password`,`authority`,`email`,`phone`,`address`) VALUES(4,'test3','test3','user','test3@eg.com','15000000000','海韵大学');
+INSERT INTO `user`(`id`,`username`,`password`,`authority`,`email`,`phone`,`address`) VALUES(5,'test4','test4','user','q@a.cn','15900000000','芙蓉大学');
