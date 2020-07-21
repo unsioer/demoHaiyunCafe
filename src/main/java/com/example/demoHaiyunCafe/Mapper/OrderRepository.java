@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.Calendar;
 import java.util.List;
 
 @Repository
@@ -22,5 +23,5 @@ public interface OrderRepository extends JpaRepository<Order,Integer> {
 
     Page<Order> findAll(Pageable pageable);
 
-    List<Order> findAllByOrderdateContaining(String yearmonth);
+    List<Order> findAllByOrderdateContaining(String dateString);
 }

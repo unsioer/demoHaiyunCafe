@@ -8,7 +8,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -44,6 +47,32 @@ public class OrderServiceImpl implements OrderService{
         data.add(monthIncome);
         return data;
     }
+
+    @Override
+    @Transactional
+    public List<String> findLast30DayData() {
+        List<String> data = new ArrayList<String>();
+        String dayOrderNumString="",dayIncomeString="";
+        Date date=new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -30);
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        for(int i=0;i<30;i++) {
+            cal.add(Calendar.DATE, 1);
+            date=cal.getTime();
+            List<Order> orderList = orderRepository.findAllByOrderdateContaining(sdf.format(date));
+            dayOrderNumString+=orderList.size()+", ";
+            Integer dayIncome=0;
+            for (Order order : orderList) {
+                dayIncome+= order.getItemnum()*order.getItemprice();
+            }
+            dayIncomeString+=dayIncome+", ";
+        }
+        data.add(dayOrderNumString);
+        data.add(dayIncomeString);
+        return data;
+    }
+
 
     @Override
     @Transactional
