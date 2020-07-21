@@ -101,8 +101,8 @@
                                             }
                                         </script>
                                         <input type="file" accept="image/*" name="uploader-input"
-                                               class="uploader-file btn btn-primary" id="uploadFile" style="display:none">
-                                        <button class="btn btn-primary" onclick="getFile()">上传图片</button>
+                                               class="uploader-file" id="uploadFile" style="display:none">
+                                        <button class="btn btn-primary" onmousedown="getFile()">上传图片</button>
                                     </div>
                                     <div class="col-sm-offset-3">
                                         <img id="imgDisplay" th:src="@{'/'+${item.picturepath}}" width="35%" />
