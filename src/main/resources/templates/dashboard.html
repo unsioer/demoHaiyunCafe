@@ -30,10 +30,7 @@
                             <h5>当前月收入(元)</h5>
                         </div>
                         <div class="ibox-content">
-                            <!--                            <h1 class="no-margins" th:text="${stats.mIncome}">&#45;&#45;月收入啦啦</h1>-->
-                            <!--                            &lt;!&ndash;<td th:text="${stats.monthlyIncome}">Onions</td>&ndash;&gt;-->
-                            <!--                            <div class="stat-percent font-bold text-success" th:text="${stats.incomePer}">月收入环比<i-->
-                            <!--                                    class="fa fa-level-up"></i></div>-->
+                            <h1 class="no-margins" th:text="${mIncome}">&#45;&#45;月收入</h1>
                             <small>Monthly income</small>
                         </div>
                     </div>
@@ -45,22 +42,20 @@
                             <h5>当前月订单数</h5>
                         </div>
                         <div class="ibox-content">
-                            <!--                            <h1 class="no-margins" th:text="${stats.mOrderNum}">&#45;&#45;月订单数</h1>-->
-                            <!--                            <div class="stat-percent font-bold text-info" th:text="${stats.orderNumPer}">20% <i-->
-                            <!--                                    class="fa fa-level-up"></i></div>-->
+                            <h1 class="no-margins" th:text="${mOrderNum}">&#45;&#45;月订单数</h1>
                             <small>Monthly orders</small>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <!--div class="col-lg-3">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <span class="label label-primary pull-right">Today</span>
                             <h5>访问量</h5>
                         </div>
                         <div class="ibox-content">
-                            <!--                            <h1 class="no-margins" th:text="${stats.pv}">&#45;&#45;访问量</h1>-->
-                            <!--                            <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>-->
+                            <h1 class="no-margins" th:text="${stats.pv}">&#45;&#45;访问量</h1>
+                            <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
                             <small>New visits</small>
                         </div>
                     </div>
@@ -72,12 +67,12 @@
                             <h5>当前月退单数</h5>
                         </div>
                         <div class="ibox-content">
-                            <!--                            <h1 class="no-margins" th:text="${stats.mOrderRefund}">80,600</h1>-->
-                            <!--                            <div class="stat-percent font-bold text-danger" th:text="${stats.mOrderRefundPer}">38%</div>-->
+                            <h1 class="no-margins" th:text="${stats.mOrderRefund}">80,600</h1>
+                            <div class="stat-percent font-bold text-danger" th:text="${stats.mOrderRefundPer}">38%</div>
                             <small>Monthly refund</small>
                         </div>
                     </div>
-                </div>
+                </div-->
             </div>
 
             <div class="row">

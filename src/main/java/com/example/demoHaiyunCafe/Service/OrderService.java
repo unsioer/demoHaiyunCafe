@@ -23,4 +23,6 @@ public interface OrderService {
 
     List<Order> findAllByUserAddress(String userAddress);
 
+    List<Integer> findMonthData(Integer year, Integer month);
+
 }

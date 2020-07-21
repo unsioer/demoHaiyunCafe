@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,6 +26,23 @@ public class OrderServiceImpl implements OrderService{
     @Transactional
     public Order findById(Integer id){
         return orderRepository.findById(id).get();
+    }
+
+    @Override
+    @Transactional
+    public List<Integer> findMonthData(Integer year, Integer month) { ;
+        String yearmonth = String.format("%04d", year) + "-" + String.format("%02d", month) + "-";
+        System.out.println("Start to find.."+yearmonth);
+        List<Order> orderList=orderRepository.findAllByOrderdateContaining(yearmonth);
+        List<Integer> data = new ArrayList<Integer>();
+        System.out.println(data.size());
+        data.add(orderList.size());
+        Integer monthIncome=0;
+        for (Order order : orderList) {
+             monthIncome+= order.getItemnum()*order.getItemprice();
+        }
+        data.add(monthIncome);
+        return data;
     }
 
     @Override
