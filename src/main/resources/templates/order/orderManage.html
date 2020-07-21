@@ -53,11 +53,11 @@
                         <div class="ibox-content" style="display: block;">
                             <form action="orderManage" th:action="@{orderManage}" th:object="${order}">
                                 <div class="row">
-                                    <div class="col-sm-2 m-b-xs">
+                                    <div class="col-sm-4 m-b-xs">
                                         <input placeholder="用户号" class="form-control" type="text" th:field="*{uid} "/>
                                     </div>
 
-                                    <div class="col-sm-2 m-b-xs">
+                                    <div class="col-sm-4 m-b-xs">
                                         <input class="form-control" type="text" th:field="*{userAddress} " placeholder="用户收货地址" />
                                     </div>
                                     <!--                                    <div class="col-sm-2 m-b-xs">-->

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,6 +50,23 @@ public class ItemServiceImpl implements ItemService{
             popularity+=order.getItemnum();
         }
     	return popularity;
+    }
+
+    @Override
+    @Transactional
+    public List<Item> findTop5PopularItems()
+    {
+        List<Item> itemList=findAll();
+        for (Item i:itemList) {
+            i.setPopularity(findItemPopularity(i.getId()));
+        }
+        itemList.sort(Comparator.comparing(Item::getPopularity).reversed());
+        List<Item> result=new ArrayList<>();
+        for(int i=0;i<5;i++)
+        {
+            result.add(itemList.get(i));
+        }
+        return result;
     }
     
     @Override

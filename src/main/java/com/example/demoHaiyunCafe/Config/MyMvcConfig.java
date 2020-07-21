@@ -28,7 +28,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
                 registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/regist","/regist.html","/login","/login.html","/",
                         "/img/**","/css/**","/js/**","/webjars/**");
                 WebMvcConfigurer.super.addInterceptors(registry);
-                registry.addInterceptor(new AdminInterceptor()).addPathPatterns("/dashboard","/item**");
+                registry.addInterceptor(new AdminInterceptor()).addPathPatterns("/dashboard","/item**","/user**","/upload");
             }
             @Override
             public void addViewControllers(ViewControllerRegistry registry) {

@@ -546,7 +546,7 @@ select option{
 .date1 {
   background: url(../img/box1.png) no-repeat 94% 50% #FFF;
 }
-.date_btn form input[type="submit"] {
+.date_btn input[type="submit"] {
   text-transform: capitalize;
   width: 100% !important;
   background: #D96B66;
@@ -565,7 +565,7 @@ select option{
   -moz-border-radius: 4px;
   -o-border-radius: 4px;
 }
-.date_btn form input[type="submit"]:hover{
+.date_btn input[type="submit"]:hover{
 	background: #5fa022;
 }
 .book1 input[type="text"] {
@@ -923,6 +923,7 @@ li.bt-nn h6 {
   width: 33.33%;
   text-align: center;
     padding: 0em 0 0 4.3em;
+    
 }
 
 i.sear{
@@ -946,6 +947,8 @@ i.sear{
 #checkoutlink:link,#checkoutlink:visited,#checkoutlink:hover,#checkoutlink:active
 {
 	color:white;
+	font-size:12px;
+	text-align:center;
 }
 
 i.ca-r{
@@ -1889,6 +1892,7 @@ li.bt-nn {
 }
 .book-top {
   margin: 0 0 1em;
+  
 }
 .boo-lef p {
   font-size: 0.8125em;

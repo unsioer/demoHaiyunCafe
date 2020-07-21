@@ -9,6 +9,8 @@ public interface ItemService {
     List<Item> findAll();
 
     Integer findItemPopularity(Integer iid);
+
+    List<Item> findTop5PopularItems();
     
     Item saveOrUpdateItem(Item item);
 

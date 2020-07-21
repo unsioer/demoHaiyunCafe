@@ -32,7 +32,6 @@ public class ItemController {
 
     @GetMapping("/itemManage")
     public ModelAndView list(Item item, Integer pageNum, Model model) {
-        //model.addAttribute("title","菜品管理");
         List<String> itemTypeList = new ArrayList<String>();
         itemTypeList.add("饮料");
         itemTypeList.add("小吃");

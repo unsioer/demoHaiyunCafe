@@ -5,6 +5,7 @@ import com.example.demoHaiyunCafe.Bean.Order;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -23,4 +24,9 @@ public interface OrderService {
 
     List<Order> findAllByUserAddress(String userAddress);
 
+    List<Integer> findMonthData(Integer year, Integer month);
+
+    List<Integer> findYearData(Integer year);
+
+    List<String> findLast30DayData();
 }

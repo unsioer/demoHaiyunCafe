@@ -10,7 +10,7 @@ CREATE TABLE `menu` (
   `type` varchar(32) NOT NULL,
   `picturepath` varchar(60),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `menu`(`id`, `itemname`, `number`, `price`, `type`, `picturepath`)
   VALUES(1, '拿铁', 100, 18, '饮料', 'img/拿铁.jpg');

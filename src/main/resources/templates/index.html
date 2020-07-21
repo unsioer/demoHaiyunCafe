@@ -32,8 +32,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<span class="menu"> </span>
 						<ul>
 							<li class="active"><a href="index">主页</a></li>
-							<li><a href="/logout">登出</a></li>
-							<li><a href="/userProfileEdit">修改个人信息</a></li>
+							<li><a href="logout">登出</a></li>
+							<li><a href="profileEdit">修改个人信息</a></li>
 								<div class="clearfix"> </div>		
 						</ul>
 								<!-- script-for-nav -->
@@ -84,37 +84,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="boo-lef">
 								<i class="ca-r"></i>
 								<br>
-								<a id = "checkoutlink" href = "http://localhost:8888/checkout">购物车</a>
+								<p><a id = "checkoutlink" href = "./checkout">购物车</a></p>
 								</div>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
 						<ul>
+							<form action="itemManage" th:action="@{index}" th:object="${item}">
 							<li class="span1_of_1">
 								 <!----------start section_room----------->
-								 <form>
-									<input type="text" class="textbox" value="菜品名称" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '菜品名称';}">
-								</form>
-							 </li>	
+									<input type="text" class="textbox" placeholder="菜品名称" th:field="*{itemname}">
+							 </li>
 							<li class="span1_of_1">
 								 <!----------start section_room----------->
 								 <div class="section_room">
-									  <select id="country" onchange="change_country(this.value)" class="frm-field required">
-											<option value="null">类别</option>
-											<option value="null">饮料</option>
-											<option value="AX">小吃</option>
-											<option value="AX">主食</option>
-									  </select>
+									 <select class="textbox" th:field="*{type} ">
+										 <option value="0">--请选择菜品分类--</option>
+										 <option th:each="itemtype : ${itemTypeList}" th:value="${itemtype?.toString()}" th:text="${itemtype?.toString()}" th:selected="${itemtype?.toString()==item?.type}">分类</option>
+									 </select>
 								 </div>	
 							 </li>				  
 							 <li class="span1_of_3">
 									<div class="date_btn">
-										<form action="resturants.html">
-											<input type="submit" value="查找菜品">
-										</form>
+										<input type="submit" value="查找菜品">
 									</div>
 							 </li>
 								<div class="clearfix"></div>
+							</form>
 						</ul>
 					</div>
 				</div>	

@@ -30,10 +30,7 @@
                             <h5>当前月收入(元)</h5>
                         </div>
                         <div class="ibox-content">
-                            <!--                            <h1 class="no-margins" th:text="${stats.mIncome}">&#45;&#45;月收入啦啦</h1>-->
-                            <!--                            &lt;!&ndash;<td th:text="${stats.monthlyIncome}">Onions</td>&ndash;&gt;-->
-                            <!--                            <div class="stat-percent font-bold text-success" th:text="${stats.incomePer}">月收入环比<i-->
-                            <!--                                    class="fa fa-level-up"></i></div>-->
+                            <h1 class="no-margins" th:text="${mIncome}">&#45;&#45;月收入</h1>
                             <small>Monthly income</small>
                         </div>
                     </div>
@@ -45,9 +42,7 @@
                             <h5>当前月订单数</h5>
                         </div>
                         <div class="ibox-content">
-                            <!--                            <h1 class="no-margins" th:text="${stats.mOrderNum}">&#45;&#45;月订单数</h1>-->
-                            <!--                            <div class="stat-percent font-bold text-info" th:text="${stats.orderNumPer}">20% <i-->
-                            <!--                                    class="fa fa-level-up"></i></div>-->
+                            <h1 class="no-margins" th:text="${mOrderNum}">&#45;&#45;月订单数</h1>
                             <small>Monthly orders</small>
                         </div>
                     </div>
@@ -55,81 +50,71 @@
                 <div class="col-lg-3">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <span class="label label-primary pull-right">Today</span>
-                            <h5>访问量</h5>
+                            <span class="label label-primary pull-right">Income</span>
+                            <h5>本年度收入</h5>
                         </div>
                         <div class="ibox-content">
-                            <!--                            <h1 class="no-margins" th:text="${stats.pv}">&#45;&#45;访问量</h1>-->
-                            <!--                            <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>-->
-                            <small>New visits</small>
+                            <h1 class="no-margins" th:text="${yIncome}">&#45;&#45;年收入</h1>
+                            <small>Yearly income</small>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <span class="label label-danger pull-right">Refund</span>
-                            <h5>当前月退单数</h5>
+                            <span class="label label-danger pull-right">Order</span>
+                            <h5>本年度订单数</h5>
                         </div>
                         <div class="ibox-content">
-                            <!--                            <h1 class="no-margins" th:text="${stats.mOrderRefund}">80,600</h1>-->
-                            <!--                            <div class="stat-percent font-bold text-danger" th:text="${stats.mOrderRefundPer}">38%</div>-->
-                            <small>Monthly refund</small>
+                            <h1 class="no-margins" th:text="${yOrderNum}">&#45;&#45;年订单数</h1>
+                            <small>Yearly orders</small>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Orders</h5>
+                            <h5>近30天订单</h5>
                             <div class="pull-right">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-xs btn-white active">Today</button>
-                                    <button type="button" class="btn btn-xs btn-white">Monthly</button>
-                                    <button type="button" class="btn btn-xs btn-white">Annual</button>
+                                    <a type="button" class="btn btn-xs btn-white" href="orderManage">全部订单详情</a>
                                 </div>
                             </div>
                         </div>
                         <div class="ibox-content">
                             <div class="row">
-                                <div class="col-lg-9">
+                                <div class="col-lg-12">
                                     <div class="flot-chart">
-                                        <div class="flot-chart-content" id="flot-dashboard-chart"></div>
-                                        <input type="hidden" id="data2" th:value="${data2}"/>
-                                        <input type="hidden" id="data3" th:value="${data3}"/>
+                                        <div class="flot-chart-content" id="flot-dashboard-30day-order-chart"></div>
+                                        <input type="hidden" id="dayOrderNumStr" th:value="${dayOrderNumStr}"/>
+                                        <input type="hidden" id="dayIncomeStr" th:value="${dayIncomeStr}"/>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
-                                    <ul class="stat-list">
-                                        <li>
-                                            <h2 class="no-margins">2,346</h2>
-                                            <small>Total orders in period</small>
-                                            <div class="stat-percent">48% <i class="fa fa-level-up text-navy"></i></div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 48%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <h2 class="no-margins ">4,422</h2>
-                                            <small>Orders in last month</small>
-                                            <div class="stat-percent">60% <i class="fa fa-level-down text-navy"></i>
-                                            </div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 60%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <h2 class="no-margins ">9,180</h2>
-                                            <small>Monthly income from orders</small>
-                                            <div class="stat-percent">22% <i class="fa fa-bolt text-navy"></i></div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 22%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>菜品欢迎度</h5>
+                            <div class="pull-right">
+                                <div class="btn-group">
+                                    <a type="button" class="btn btn-xs btn-white" href="itemPopularity">全部菜品欢迎度</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="flot-chart">
+                                        <div class="flot-chart-content" id="flot-dashboard-item-popularity-chart"></div>
+                                        <input type="hidden" id="itemNameString" th:value="${itemNameStr}"/>
+                                        <input type="hidden" id="itemPopularityString" th:value="${itemPopularityStr}"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -183,47 +168,35 @@
 <script>
     $(document).ready(function () {
 
-        $('.chart').easyPieChart({
-            barColor: '#f8ac59',
-            scaleLength: 5,
-            lineWidth: 4,
-            size: 80
-        });
-
-        $('.chart2').easyPieChart({
-            barColor: '#1c84c6',
-            scaleLength: 5,
-            lineWidth: 4,
-            size: 80
-        });
-
-
         function gd(year, month, day) {
             return new Date(year, month - 1, day).getTime();
         }
 
 
-        var list2 = $('#data2').val();
-        var list3 = $('#data3').val();
+        var dayOrderNumList = $('#dayOrderNumStr').val();
+        var dayIncomeList = $('#dayIncomeStr').val();
 
-        list2 = list2.split(", ");
-        list3 = list3.split(",");
+        dayOrderNumList = dayOrderNumList.split(",");
+        dayIncomeList = dayIncomeList.split(",");
 
-        var thirtyDays = timeForMat(30);
-        var data3 = [];
-        var data2 = [];
+        console.log(dayOrderNumList);
+        console.log(dayIncomeList);
+
+        //近30天只需减去29天
+        var thirtyDays = timeForMat(29);
+        var dayIncomeData = [];
+        var dayOrderNumData = [];
         var j = 0;
         var t2 = thirtyDays['t2'];
         var t1 = thirtyDays['t1'];
         for (var i = t2; t1 >= i; i = i + 86400000) {
-            var temp2 = [i, parseInt(list2[j])]
-            var temp3 = [i, parseInt(list3[j])]
-            data2.push(temp2);
-            data3.push(temp3);
+            var dayOrderNumTemp = [i, parseInt(dayOrderNumList[j])]
+            var dayIncomeTemp = [i, parseInt(dayIncomeList[j])]
+            dayOrderNumData.push(dayOrderNumTemp);
+            dayIncomeData.push(dayIncomeTemp);
             j++
         }
-        console.log(data2);
-        console.log(data3);
+
         function timeForMat(count) {
             // 拼接时间
             var time1 = new Date()
@@ -247,10 +220,10 @@
             }
         }
 
-        var dataset = [
+        var orderDataset = [
             {
                 label: "收入(元)",
-                data: data3,
+                data: dayIncomeData,
                 color: "#1ab394",
                 bars: {
                     show: true,
@@ -262,7 +235,7 @@
             },
             {
                 label: "订单数",
-                data: data2,
+                data: dayOrderNumData,
                 yaxis: 2,
                 color: "#1C84C6",
                 lines: {
@@ -286,7 +259,7 @@
             }
         ];
 
-        var options = {
+        var orderOptions = {
             xaxis: {
                 mode: "time",
                 tickSize: [3, "day"],
@@ -327,43 +300,75 @@
         };
 
 
-        var previousPoint = null, previousLabel = null;
+        $.plot($("#flot-dashboard-30day-order-chart"), orderDataset, orderOptions);
 
-        $.plot($("#flot-dashboard-chart"), dataset, options);
+        var itemNameList = $('#itemNameString').val();
+        var itemPopularityList = $('#itemPopularityString').val();
 
-        var mapData = {
-            "US": 298,
-            "SA": 200,
-            "DE": 220,
-            "FR": 540,
-            "CN": 120,
-            "AU": 760,
-            "BR": 550,
-            "IN": 200,
-            "GB": 120,
+        itemNameList = itemNameList.split(",");
+        itemPopularityList = itemPopularityList.split(",");
+
+        var itemPopularityData=[];
+        for (var i = 0;i<5;i++) {
+            var itemPopularityTemp = [i, parseInt(itemPopularityList[i])]
+            itemPopularityData.push(itemPopularityTemp);
+            j++
+        }
+
+        console.log(itemNameList);
+        console.log(itemPopularityList);
+
+        var itemDataset = [
+            {
+                label: "销量",
+                data: itemPopularityData,
+                color: "#1ab394",
+                bars: {
+                    show: true,
+                    align: "center",
+                    //horizontal: true,
+                    barWidth:  0.5,
+                    lineWidth: 0
+                },
+            }
+        ];
+
+
+        var itemOptions = {
+            xaxis: {
+                //position:"left",
+                mode: null,
+                ticks: [ [0,itemNameList[0]], [1,itemNameList[1]], [2,itemNameList[2]], [3,itemNameList[3]], [4,itemNameList[4]] ],
+                tickLength: 0,
+                axisLabel: "菜品名",
+                axisLabelUseCanvas: true,
+                axisLabelFontSizePixels: 12,
+                axisLabelFontFamily: 'Arial',
+                axisLabelPadding: 3,
+                color: "#d5d5d5"
+            },
+            yaxis: {
+                //position: "bottom",
+                color: "#d5d5d5",
+                axisLabelUseCanvas: true,
+                axisLabelFontSizePixels: 12,
+                axisLabelFontFamily: 'Arial',
+                axisLabelPadding: 10
+            },
+            legend: {
+                noColumns: 1,
+                labelBoxBorderColor: "#000000",
+                position: "ne"
+            },
+            grid: {
+                borderWidth: 0
+            }
         };
 
-        $('#world-map').vectorMap({
-            map: 'world_mill_en',
-            backgroundColor: "transparent",
-            regionStyle: {
-                initial: {
-                    fill: '#e4e4e4',
-                    "fill-opacity": 0.9,
-                    stroke: 'none',
-                    "stroke-width": 0,
-                    "stroke-opacity": 0
-                }
-            },
 
-            series: {
-                regions: [{
-                    values: mapData,
-                    scale: ["#1ab394", "#22d6b1"],
-                    normalizeFunction: 'polynomial'
-                }]
-            },
-        });
+        $.plot($("#flot-dashboard-item-popularity-chart"),
+            itemDataset, itemOptions);
+
     });
 </script>
 </body>
