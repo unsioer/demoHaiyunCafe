@@ -8,7 +8,12 @@ Project of *Practice of Java programming design* course in sophomores' summer te
 
 ## Start 开始
 
-- 执行 `/sql`目录下的SQL脚本（测试用非必需：`userorder.sql`）
+- 执行 `/sql`目录下的SQL脚本
+  - 测试用非必需：`userorder.sql`
+  - **注意UTF-8格式，建议：**
+```
+mysql -u root -p --default-character-set=utf8mb4
+```
 - 检查 `/src/main/java/resources/application.properties`的相应配置
 
 ## Structure 结构
