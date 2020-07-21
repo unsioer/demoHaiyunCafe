@@ -23,7 +23,7 @@ public class UserProfileController {
 
     @Autowired
     private CartServiceImpl cartService;
-    @GetMapping("/userProfileEdit")
+    @GetMapping("/profileEdit")
     public ModelAndView userEditGet(Model model, User user, HttpSession session, HttpServletRequest request){
         //购物车
         Integer uid =Integer.parseInt(session.getAttribute("userId").toString());
@@ -48,13 +48,13 @@ public class UserProfileController {
             }
             model.addAttribute("user",user1);
         }
-        return new ModelAndView("user/userProfileEdit","userEditModel",model );
+        return new ModelAndView("user/profileEdit","userEditModel",model );
     }
 
     @PostMapping("/userProfileEdit")
     public ModelAndView userEditPost(Model model,User user){
         System.out.println(user.getId());
         userService.saveOrUpdateUser(user);
-        return new ModelAndView("user/userProfileEdit","userEditModel",model );
+        return new ModelAndView("user/profileEdit","userEditModel",model );
     }
 }

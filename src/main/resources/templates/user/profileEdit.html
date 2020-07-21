@@ -30,8 +30,8 @@
 				<span class="menu"> </span>
 				<ul>
 					<li><a href="index">主页</a></li>
-					<li><a href="/logout">登出</a></li>
-					<li class="active"><a href="/userProfileEdit">修改个人信息</a></li>
+					<li><a href="logout">登出</a></li>
+					<li class="active"><a href="profileEdit">修改个人信息</a></li>
 					<div class="clearfix"> </div>
 				</ul>
 				<!-- script-for-nav -->
@@ -45,8 +45,8 @@
 				<!-- script-for-nav -->
 			</div>
 			<div class="header-right1" >
-				<div class="cart box_1" action="checkout">
-					<a href="#">
+				<div class="cart box_1" action="index">
+					<a href="checkout">
 						<h3> <span type = "text" th:text="${totalPrice}">  </span> (<span type = "text" th:text="${num}">  </span> items)<img src="img/bag.png" alt=""></h3>
 					</a>
 					<p><a href="#" class="simpleCart_empty" th:onclick="'javascript:emptyCart();'">清空购物车</a></p>
