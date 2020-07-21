@@ -923,6 +923,7 @@ li.bt-nn h6 {
   width: 33.33%;
   text-align: center;
     padding: 0em 0 0 4.3em;
+    
 }
 
 i.sear{
@@ -946,6 +947,8 @@ i.sear{
 #checkoutlink:link,#checkoutlink:visited,#checkoutlink:hover,#checkoutlink:active
 {
 	color:white;
+	font-size:12px;
+	text-align:center;
 }
 
 i.ca-r{
@@ -1889,6 +1892,7 @@ li.bt-nn {
 }
 .book-top {
   margin: 0 0 1em;
+  
 }
 .boo-lef p {
   font-size: 0.8125em;
