@@ -90,31 +90,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="clearfix"> </div>
 						</div>
 						<ul>
+							<form action="itemManage" th:action="@{index}" th:object="${item}">
 							<li class="span1_of_1">
 								 <!----------start section_room----------->
-								 <form>
-									<input type="text" class="textbox" value="菜品名称" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '菜品名称';}">
-								</form>
-							 </li>	
+									<input type="text" class="textbox" placeholder="菜品名称" th:field="*{itemname}">
+							 </li>
 							<li class="span1_of_1">
 								 <!----------start section_room----------->
 								 <div class="section_room">
-									  <select id="country" onchange="change_country(this.value)" class="frm-field required">
-											<option value="null">类别</option>
-											<option value="null">饮料</option>
-											<option value="AX">小吃</option>
-											<option value="AX">主食</option>
-									  </select>
+									 <select class="textbox" th:field="*{type} ">
+										 <option value="0">--请选择菜品分类--</option>
+										 <option th:each="itemtype : ${itemTypeList}" th:value="${itemtype?.toString()}" th:text="${itemtype?.toString()}" th:selected="${itemtype?.toString()==item?.type}">分类</option>
+									 </select>
 								 </div>	
 							 </li>				  
 							 <li class="span1_of_3">
 									<div class="date_btn">
-										<form action="resturants.html">
-											<input type="submit" value="查找菜品">
-										</form>
+										<input type="submit" value="查找菜品">
 									</div>
 							 </li>
 								<div class="clearfix"></div>
+							</form>
 						</ul>
 					</div>
 				</div>	
