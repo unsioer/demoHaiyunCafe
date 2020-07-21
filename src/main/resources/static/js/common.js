@@ -10,7 +10,7 @@ if (url.indexOf("newsCategoryManage") > 0
 }
 
 // 提示条配置
-toastr.options = {
+/*toastr.options = {
 	"closeButton" : true,
 	"debug" : false,
 	"progressBar" : true,
@@ -25,4 +25,4 @@ toastr.options = {
 	"hideEasing" : "linear",
 	"showMethod" : "fadeIn",
 	"hideMethod" : "fadeOut"
-}
+}*/
