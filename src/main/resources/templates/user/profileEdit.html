@@ -66,7 +66,7 @@
 			 <h3>个人信息修改</h3>
 		  </div>
 		  <div class="contact-grid">
-			 <form th:action="@{/userProfileEdit}" method="POST" th:object="${user}">
+			 <form th:action="@{/profileEdit}" method="POST" th:object="${user}">
 				 <input type="hidden" th:field="*{id}"/>
 				 <input style="color: black" readonly="readonly" type="text" placeholder="用户名" th:field="*{username}" required/>
 				 <input style="color: black" type="text" placeholder="密码" th:field="*{password}" required/>

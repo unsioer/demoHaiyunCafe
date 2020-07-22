@@ -51,7 +51,7 @@ public class UserProfileController {
         return new ModelAndView("user/profileEdit","userEditModel",model );
     }
 
-    @PostMapping("/userProfileEdit")
+    @PostMapping("/profileEdit")
     public ModelAndView userEditPost(Model model,User user){
         System.out.println(user.getId());
         userService.saveOrUpdateUser(user);
