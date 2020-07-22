@@ -14,7 +14,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `user`(`id`,`username`,`password`,`authority`) VALUES(1,'admin','admin','administrator');
-INSERT INTO `user`(`id`,`username`,`password`,`authority`,`email`,`phone`,`address`) VALUES(2,'test','test','user','test@example.com','13000000000','å…‹èŽ±ç™»å¤§å­¦');
-INSERT INTO `user`(`id`,`username`,`password`,`authority`,`email`,`phone`,`address`) VALUES(3,'test2','test2','user','test2@example.com','13000000001','åŠ é‡Œæ•¦å¤§å­¦');
-INSERT INTO `user`(`id`,`username`,`password`,`authority`,`email`,`phone`,`address`) VALUES(4,'test3','test3','user','test3@eg.com','15000000000','æµ·éŸµå¤§å­¦');
-INSERT INTO `user`(`id`,`username`,`password`,`authority`,`email`,`phone`,`address`) VALUES(5,'test4','test4','user','q@a.cn','15900000000','èŠ™è“‰å¤§å­¦');
+INSERT INTO `user`(`id`,`username`,`password`,`authority`,`email`,`phone`,`address`) VALUES(2,'test','test','user','test@example.com','13000000000','¿ËÀ³µÇ´óÑ§');
+INSERT INTO `user`(`id`,`username`,`password`,`authority`,`email`,`phone`,`address`) VALUES(3,'test2','test2','user','test2@example.com','13000000001','¼ÓÀï¶Ø´óÑ§');
+INSERT INTO `user`(`id`,`username`,`password`,`authority`,`email`,`phone`,`address`) VALUES(4,'test3','test3','user','test3@eg.com','15000000000','º£ÔÏ´óÑ§');
+INSERT INTO `user`(`id`,`username`,`password`,`authority`,`email`,`phone`,`address`) VALUES(5,'test4','test4','user','q@a.cn','15900000000','Ü½ÈØ´óÑ§');

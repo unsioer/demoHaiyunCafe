@@ -134,12 +134,13 @@
                                     </tfoot>
                                 </table>
                                 <div class="pagelist">
-                                    <p>当前<span th:text="${pageInfo.getNumber()} + 1"></span>页,总<span th:text="${pageInfo.totalPages}"></span>页
+                                        <p>当前<span th:text="${pageInfo.getNumber()} + 1"></span>页,总<span th:text="${pageInfo.totalPages}"></span>页
                                         　　　　　　　　　　　　　　　　　共<span th:text="${pageInfo.totalElements}"></span>条记录
-                                        <a th:href="@{/orderManage}">首页</a>
-                                        <a th:href="@{/orderManage(pageNum = ${pageInfo.hasPrevious()} ? ${pageInfo.getNumber() } : 1)}">上一页</a>
-                                        <a th:href="@{/orderManage(pageNum = ${pageInfo.hasNext()} ? ${pageInfo.getNumber()} + 2 : ${pageInfo.totalPages})}">下一页</a>
-                                        <a th:href="@{/orderManage(pageNum = ${pageInfo.totalPages})}">尾页</a></p>
+
+                                    <a th:href="@{/orderManage(userAddress = ${order.userAddress},uid=${order.uid})}">首页</a>
+                                    <a th:href="@{/orderManage(pageNum = ${pageInfo.hasPrevious()} ? ${pageInfo.getNumber() } : 1,userAddress = ${order.userAddress},uid=${order.uid})}">上一页</a>
+                                    <a th:href="@{/orderManage(pageNum = ${pageInfo.hasNext()} ? ${pageInfo.getNumber()} + 2 : ${pageInfo.totalPages},userAddress = ${order.userAddress},uid=${order.uid})}">下一页</a>
+                                    <a th:href="@{/orderManage(pageNum = ${pageInfo.totalPages},userAddress = ${order.userAddress},uid=${order.uid})}">尾页</a></p>
                                 </div>
                             </div>
                         </div>

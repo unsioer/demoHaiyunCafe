@@ -13,18 +13,18 @@ CREATE TABLE `menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `menu`(`id`, `itemname`, `number`, `price`, `type`, `picturepath`)
-  VALUES(1, 'æ‹¿é“', 100, 18, 'é¥®æ–™', 'img/æ‹¿é“.jpg');
+  VALUES(1, 'ÄÃÌú', 100, 18, 'ÒûÁÏ', 'img/ÄÃÌú.jpg');
 INSERT INTO `menu`(`id`, `itemname`, `number`, `price`, `type`, `picturepath`)
-  VALUES(2, 'æŠ¹èŒ¶è›‹ç³•', 66, 21, 'å°åƒ', 'img/æŠ¹èŒ¶è›‹ç³•.jpg');
+  VALUES(2, 'Ä¨²èµ°¸â', 66, 21, 'Ğ¡³Ô', 'img/Ä¨²èµ°¸â.jpg');
 INSERT INTO `menu`(`id`, `itemname`, `number`, `price`, `type`, `picturepath`)
-  VALUES(3, 'æ„å¼è‚‰é…±é¢', 200, 25, 'ä¸»é£Ÿ', 'img/æ„å¼è‚‰é…±é¢.jpg');
+  VALUES(3, 'ÒâÊ½Èâ½´Ãæ', 200, 25, 'Ö÷Ê³', 'img/ÒâÊ½Èâ½´Ãæ.jpg');
 INSERT INTO `menu`(`id`, `itemname`, `number`, `price`, `type`, `picturepath`)
-  VALUES(4, 'æ…•æ–¯è›‹ç³•', 88, 19, 'å°åƒ', 'img/æ…•æ–¯è›‹ç³•.jpg');
+  VALUES(4, 'Ä½Ë¹µ°¸â', 88, 19, 'Ğ¡³Ô', 'img/Ä½Ë¹µ°¸â.jpg');
 INSERT INTO `menu`(`id`, `itemname`, `number`, `price`, `type`, `picturepath`)
-  VALUES(5, 'æŸ æª¬æ°´', 250, 10, 'é¥®æ–™', 'img/æŸ æª¬æ°´.jpg');
+  VALUES(5, 'ÄûÃÊË®', 250, 10, 'ÒûÁÏ', 'img/ÄûÃÊË®.jpg');
 INSERT INTO `menu`(`id`, `itemname`, `number`, `price`, `type`, `picturepath`)
-  VALUES(6, 'ææ‹‰ç±³è‹', 300, 17, 'å°åƒ', 'img/ææ‹‰ç±³è‹.jpg');
+  VALUES(6, 'ÌáÀ­Ã×ËÕ', 300, 17, 'Ğ¡³Ô', 'img/ÌáÀ­Ã×ËÕ.jpg');
 INSERT INTO `menu`(`id`, `itemname`, `number`, `price`, `type`, `picturepath`)
-  VALUES(7, 'è‡³å°ŠæŠ«è¨', 100, 55, 'å°åƒ', 'img/è‡³å°ŠæŠ«è¨.jpg');
+  VALUES(7, 'ÖÁ×ğÅûÈø', 100, 55, 'Ğ¡³Ô', 'img/ÖÁ×ğÅûÈø.jpg');
 INSERT INTO `menu`(`id`, `itemname`, `number`, `price`, `type`, `picturepath`)
-  VALUES(8, 'åœŸå¸', 100, 10, 'å°åƒ', 'img/åœŸå¸.jpg');
+  VALUES(8, 'ÍÁË¾', 100, 10, 'Ğ¡³Ô', 'img/ÍÁË¾.jpg');

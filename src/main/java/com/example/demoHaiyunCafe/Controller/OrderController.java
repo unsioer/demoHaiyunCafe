@@ -83,6 +83,9 @@ public class OrderController {
 
 //        PageHelper.startPage(pageNum,pageSize);
 
+//        System.out.println(order.getUserAddress());
+//        System.out.println(userAddress);
+
         List<Order> temp = orderService.findAll();
 
         List<Order>  orderList = new ArrayList<>();
