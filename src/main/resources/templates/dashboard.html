@@ -307,17 +307,16 @@
 
         itemNameList = itemNameList.split(",");
         itemPopularityList = itemPopularityList.split(",");
+        //删除空元素
+        itemNameList.splice(itemNameList.length-1,1);
+        itemPopularityList.splice(itemPopularityList.length-1,1);
 
         var itemPopularityData=[];
-        for (var i = 0;i<5;i++) {
+        for (var i = 0;i<itemPopularityList.length;i++) {
             var itemPopularityTemp = [i, parseInt(itemPopularityList[i])]
             itemPopularityData.push(itemPopularityTemp);
             j++
         }
-        //删除空元素
-        itemNameList.splice(itemNameList.length-1,1);
-        itemPopularityList.splice(itemPopularityList.length-1,1);
-        itemPopularityData.splice(itemPopularityData.length-1,1);
         console.log(itemNameList);
         console.log(itemPopularityList);
 
