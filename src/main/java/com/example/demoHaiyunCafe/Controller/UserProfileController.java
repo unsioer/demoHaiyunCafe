@@ -52,7 +52,22 @@ public class UserProfileController {
     }
 
     @PostMapping("/profileEdit")
-    public ModelAndView userEditPost(Model model,User user){
+    public ModelAndView userEditPost(Model model, HttpSession session,  User user){
+        //购物车
+        Integer uid =Integer.parseInt(session.getAttribute("userId").toString());
+        System.out.println(uid);
+        int totalPrice = 0;
+        int num = 0;
+        List<Cart> cartList = cartService.findAllByUid(uid);
+        for(Cart c : cartList){
+            totalPrice+= c.getNum()*c.getPrice();
+            num+=c.getNum();
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+
+        model.addAttribute("totalPrice","￥"+decimalFormat.format(totalPrice));
+        model.addAttribute("num",num);
+
         System.out.println(user.getId());
         userService.saveOrUpdateUser(user);
         return new ModelAndView("user/profileEdit","userEditModel",model );
