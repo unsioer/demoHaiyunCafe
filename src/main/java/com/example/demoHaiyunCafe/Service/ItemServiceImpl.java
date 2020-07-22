@@ -64,6 +64,7 @@ public class ItemServiceImpl implements ItemService{
         List<Item> result=new ArrayList<>();
         for(int i=0;i<5;i++)
         {
+            if(i==itemList.size()) break;
             result.add(itemList.get(i));
         }
         return result;
