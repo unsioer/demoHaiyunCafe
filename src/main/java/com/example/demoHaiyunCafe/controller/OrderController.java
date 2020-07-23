@@ -39,35 +39,34 @@ public class OrderController {
     UserService userService;
 
     @PostMapping("/orderSubmit")
-    public ModelAndView orderSubmit(HttpSession session,Model model){
-        Integer uid =Integer.parseInt(session.getAttribute("userId").toString());
-        List<Cart>  cartList = cartService.findAllByUid(uid);
+    public ModelAndView orderSubmit(HttpSession session, Model model) {
+        Integer uid = Integer.parseInt(session.getAttribute("userId").toString());
+        List<Cart> cartList = cartService.findAllByUid(uid);
 
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        for(Cart cart:cartList){
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        for (Cart cart : cartList) {
             Date date = new Date(System.currentTimeMillis());
-            Order order = new Order(cart.getUid(),cart.getIid(),cart.getItemName(),cart.getPrice(),cart.getNum()
-            ,"未支付",formatter.format(date),userService.findById((long)uid).getAddress());
+            Order order = new Order(cart.getUid(), cart.getIid(), cart.getItemName(), cart.getPrice(), cart.getNum()
+                    , "未支付", formatter.format(date), userService.findById((long) uid).getAddress());
             orderService.saveOrUpdateOrder(order);
 
             Item item = itemService.findById(cart.getIid());
-            if(item.getNumber()-cart.getNum()>=0){
-                item.setNumber(item.getNumber()-cart.getNum());
+            if (item.getNumber() - cart.getNum() >= 0) {
+                item.setNumber(item.getNumber() - cart.getNum());
                 itemService.saveOrUpdateItem(item);
-                model.addAttribute("isSuccess","提交成功");
-            }
-            else
-                model.addAttribute("isSuccess","库存不足");
+                model.addAttribute("isSuccess", "提交成功");
+            } else
+                model.addAttribute("isSuccess", "库存不足");
         }
         cartService.deleteAllByUid(uid);
 
-        Integer num =0;
-        Integer totalPrice =0;
+        Integer num = 0;
+        Integer totalPrice = 0;
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
-        model.addAttribute("totalPrice","￥"+decimalFormat.format(totalPrice));
-        model.addAttribute("num",num);
+        model.addAttribute("totalPrice", "￥" + decimalFormat.format(totalPrice));
+        model.addAttribute("num", num);
 
-        return new ModelAndView("checkout","orderSubmitModel",model);
+        return new ModelAndView("checkout", "orderSubmitModel", model);
     }
 
     @GetMapping("/orderManage")
@@ -82,41 +81,39 @@ public class OrderController {
 
         List<Order> temp = orderService.findAll();
 
-        List<Order>  orderList = new ArrayList<>();
+        List<Order> orderList = new ArrayList<>();
         List<Order> orderListAddress;
         List<Order> orderListUid;
-        if(order.getUserAddress()!=null&&!order.getUserAddress().equals("")){
+        if (order.getUserAddress() != null && !order.getUserAddress().equals("")) {
             orderListAddress = orderService.findAllByUserAddress(order.getUserAddress());
-        }
-        else
+        } else
             orderListAddress = temp;
-        if(order.getUid()!=null){
+        if (order.getUid() != null) {
             orderListUid = orderService.findAllByUid(order.getUid());
-        }
-        else
+        } else
             orderListUid = temp;
 
         orderList = orderListAddress.stream()
-                .filter(t->orderListUid.contains(t))
+                .filter(t -> orderListUid.contains(t))
                 .collect(Collectors.toList());
 
-        if (pageNum == null){
+        if (pageNum == null) {
             pageNum = 1;
         }
         Sort sort = Sort.by(Sort.Direction.ASC, "id");
         Pageable pageable = PageRequest.of(pageNum - 1, 20, sort);
 
-        Page<Order> page = listConvertToPage(orderList,pageable);
+        Page<Order> page = listConvertToPage(orderList, pageable);
 //        Page<Order> pageInfo = orderService.findAll(pageable);
-        model.addAttribute("pageInfo",page);
+        model.addAttribute("pageInfo", page);
 
         model.addAttribute("order", order);
-        return new ModelAndView("order/orderManage","orderModel",model );
+        return new ModelAndView("order/orderManage", "orderModel", model);
     }
 
     public <T> Page<T> listConvertToPage(List<T> list, Pageable pageable) {
-        int start = (int)pageable.getOffset();
-        int end = (start + pageable.getPageSize()) > list.size() ? list.size() : ( start + pageable.getPageSize());
+        int start = (int) pageable.getOffset();
+        int end = (start + pageable.getPageSize()) > list.size() ? list.size() : (start + pageable.getPageSize());
         return new PageImpl<T>(list.subList(start, end), pageable, list.size());
     }
 

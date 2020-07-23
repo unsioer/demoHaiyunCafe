@@ -18,24 +18,23 @@ public class CartServiceImpl implements CartService {
 
     @Override
     @Transactional
-    public List<Cart> findAll(){
+    public List<Cart> findAll() {
         return cartRepository.findAll();
     }
 
 
     @Override
     @Transactional
-    public Cart findById(Integer id){
+    public Cart findById(Integer id) {
         return cartRepository.findById(id).get();
     }
 
     @Override
     @Transactional
-    public Cart saveOrUpdateCart(Cart cart){
-        try{
+    public Cart saveOrUpdateCart(Cart cart) {
+        try {
             cartRepository.save(cart);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException("Add Item Error: " + e.getMessage());
         }
         return cart;
@@ -43,25 +42,25 @@ public class CartServiceImpl implements CartService {
 
     @Override
     @Transactional
-    public void deleteById(Integer id){
+    public void deleteById(Integer id) {
         cartRepository.deleteById(id);
     }
 
     @Override
     @Transactional
-    public List<Cart> findAllByUid(Integer uid){
+    public List<Cart> findAllByUid(Integer uid) {
         return cartRepository.findAllByUid(uid);
     }
 
     @Override
     @Transactional
-    public Cart findByUidAndIid(Integer uid, Integer iid){
-        return cartRepository.findByUidAndIid(uid,iid);
+    public Cart findByUidAndIid(Integer uid, Integer iid) {
+        return cartRepository.findByUidAndIid(uid, iid);
     }
 
     @Override
     @Transactional
-    public void deleteAllByUid(Integer uid){
+    public void deleteAllByUid(Integer uid) {
         cartRepository.deleteAllByUid(uid);
     }
 }

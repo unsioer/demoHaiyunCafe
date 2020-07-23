@@ -24,13 +24,13 @@ public class UploadController {
         // 获取上传文件名
         String filename = file.getOriginalFilename();
         // 定义上传文件保存路径
-        String path = System.getProperty("user.dir")+fileRelativePath;
+        String path = System.getProperty("user.dir") + fileRelativePath;
         // 新建文件
         File filepath = new File(path, filename);
         // 判断路径是否存在，如果不存在就创建一个
         if (!filepath.getParentFile().exists()) {
             filepath.getParentFile().mkdirs();
-            System.out.println("MKDIRS FOR "+fileRelativePath);
+            System.out.println("MKDIRS FOR " + fileRelativePath);
         }
         try {
             // 写入文件
@@ -39,7 +39,7 @@ public class UploadController {
             e.printStackTrace();
         }
         // 将src路径发送至html页面
-        model.addAttribute("filename", "/"+filename);
+        model.addAttribute("filename", "/" + filename);
         System.out.println(String.valueOf(true));
         return String.valueOf(true);
     }

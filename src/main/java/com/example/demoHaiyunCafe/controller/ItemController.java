@@ -26,49 +26,46 @@ public class ItemController {
         itemTypeList.add("饮料");
         itemTypeList.add("小吃");
         itemTypeList.add("主食");
-        model.addAttribute("itemTypeList",itemTypeList );
+        model.addAttribute("itemTypeList", itemTypeList);
 
         List<Item> temp = itemService.findAll();
 
-        List<Item>  itemList;
-        List<Item>  itemListName ;
-        List<Item>  itemListType ;
-        List<Item>  itemListPrice ;
+        List<Item> itemList;
+        List<Item> itemListName;
+        List<Item> itemListType;
+        List<Item> itemListPrice;
 
-        if(item.getItemname()!=null&&!item.getItemname().equals("")){
+        if (item.getItemname() != null && !item.getItemname().equals("")) {
             itemListName = (itemService.findAllByItemname(item.getItemname()));
-        }
-        else
+        } else
             itemListName = temp;
-        if(item.getType()!=null&& !item.getType().equals("0")){
+        if (item.getType() != null && !item.getType().equals("0")) {
             itemListType = itemService.findAllByType(item.getType());
-        }
-        else
+        } else
             itemListType = temp;
-        if(item.getPrice()!=null){
+        if (item.getPrice() != null) {
             itemListPrice = itemService.findAllByPrice(item.getPrice());
-        }
-        else
+        } else
             itemListPrice = temp;
 
         itemList = itemListName.stream()
-                .filter(t->itemListType.contains(t))
+                .filter(t -> itemListType.contains(t))
                 .collect(Collectors.toList());
 
         itemList = itemList.stream()
-                    .filter(t->itemListPrice.contains(t))
-                    .collect(Collectors.toList());
+                .filter(t -> itemListPrice.contains(t))
+                .collect(Collectors.toList());
 
-        if (pageNum == null){
+        if (pageNum == null) {
             pageNum = 1;
         }
         Pageable pageable = PageRequest.of(pageNum - 1, 20, Sort.unsorted());
 
-        Page<Item> page = listConvertToPage(itemList,pageable);
-        model.addAttribute("pageInfo",page);
+        Page<Item> page = listConvertToPage(itemList, pageable);
+        model.addAttribute("pageInfo", page);
 
         model.addAttribute("item", item);
-        return new ModelAndView("item/itemManage","itemModel",model );
+        return new ModelAndView("item/itemManage", "itemModel", model);
     }
 
     @GetMapping("/itemPopularity")
@@ -78,95 +75,92 @@ public class ItemController {
         itemTypeList.add("饮料");
         itemTypeList.add("小吃");
         itemTypeList.add("主食");
-        model.addAttribute("itemTypeList",itemTypeList );
+        model.addAttribute("itemTypeList", itemTypeList);
 
         List<Item> temp = itemService.findAll();
 
-        List<Item>  itemList;
-        List<Item>  itemListName ;
-        List<Item>  itemListType ;
-        List<Item>  itemListPrice ;
+        List<Item> itemList;
+        List<Item> itemListName;
+        List<Item> itemListType;
+        List<Item> itemListPrice;
 
-        if(item.getItemname()!=null&&!item.getItemname().equals("")){
+        if (item.getItemname() != null && !item.getItemname().equals("")) {
             itemListName = (itemService.findAllByItemname(item.getItemname()));
-        }
-        else
+        } else
             itemListName = temp;
-        if(item.getType()!=null&& !item.getType().equals("0")){
+        if (item.getType() != null && !item.getType().equals("0")) {
             itemListType = itemService.findAllByType(item.getType());
-        }
-        else
+        } else
             itemListType = temp;
-        if(item.getPrice()!=null){
+        if (item.getPrice() != null) {
             itemListPrice = itemService.findAllByPrice(item.getPrice());
-        }
-        else
+        } else
             itemListPrice = temp;
 
         itemList = itemListName.stream()
-                .filter(t->itemListType.contains(t))
+                .filter(t -> itemListType.contains(t))
                 .collect(Collectors.toList());
 
         itemList = itemList.stream()
-                .filter(t->itemListPrice.contains(t))
+                .filter(t -> itemListPrice.contains(t))
                 .collect(Collectors.toList());
 
-        if (pageNum == null){
+        if (pageNum == null) {
             pageNum = 1;
         }
-        for (Item i:itemList) {
+        for (Item i : itemList) {
             i.setPopularity(itemService.findItemPopularity(i.getId()));
         }
         itemList.sort(Comparator.comparing(Item::getPopularity).reversed());
         Pageable pageable = PageRequest.of(pageNum - 1, 20, Sort.unsorted());
 
-        Page<Item> page = listConvertToPage(itemList,pageable);
-        model.addAttribute("pageInfo",page);
+        Page<Item> page = listConvertToPage(itemList, pageable);
+        model.addAttribute("pageInfo", page);
 
         model.addAttribute("item", item);
-        return new ModelAndView("item/itemPopularity","itemModel",model );
+        return new ModelAndView("item/itemPopularity", "itemModel", model);
     }
 
 
     @GetMapping("/itemEdit")
-    public ModelAndView itemEditGet(Model model,Item item){
+    public ModelAndView itemEditGet(Model model, Item item) {
         List<String> itemTypeList = new ArrayList<String>();
         itemTypeList.add("饮料");
         itemTypeList.add("小吃");
         itemTypeList.add("主食");
-        model.addAttribute("itemTypeList",itemTypeList );
-        if(item.getId()!=null){
+        model.addAttribute("itemTypeList", itemTypeList);
+        if (item.getId() != null) {
             Item item1 = itemService.findById(item.getId());
-            if(item1!=null){
+            if (item1 != null) {
 
             }
-            model.addAttribute("item",item1);
+            model.addAttribute("item", item1);
         }
-        return new ModelAndView("item/itemEdit","itemEditModel",model );
+        return new ModelAndView("item/itemEdit", "itemEditModel", model);
     }
 
     @PostMapping("/itemEdit")
-    public ModelAndView itemEditPost(Model model,Item item){
+    public ModelAndView itemEditPost(Model model, Item item) {
 
         itemService.saveOrUpdateItem(item);
         List<String> itemTypeList = new ArrayList<String>();
         itemTypeList.add("饮料");
         itemTypeList.add("小吃");
         itemTypeList.add("主食");
-        model.addAttribute("itemTypeList",itemTypeList );
-        return new ModelAndView("item/itemEdit","itemEditModel",model );
+        model.addAttribute("itemTypeList", itemTypeList);
+        return new ModelAndView("item/itemEdit", "itemEditModel", model);
     }
 
     @ResponseBody
     @PostMapping("/itemEditState")
-    public String itemDelete(Integer id){
+    public String itemDelete(Integer id) {
         itemService.deleteById(id);
         return "success";
     }
 
     public <T> Page<T> listConvertToPage(List<T> list, Pageable pageable) {
-        int start = (int)pageable.getOffset();
-        int end = (start + pageable.getPageSize()) > list.size() ? list.size() : ( start + pageable.getPageSize());
+        int start = (int) pageable.getOffset();
+        int end = (start + pageable.getPageSize()) > list.size() ? list.size() : (start + pageable.getPageSize());
         return new PageImpl<T>(list.subList(start, end), pageable, list.size());
     }
 }

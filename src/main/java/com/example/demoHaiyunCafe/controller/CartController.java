@@ -22,17 +22,16 @@ public class CartController {
 
     @ResponseBody
     @PostMapping("/addToCart{iid}")
-    public String addToCart(@PathVariable(required = false)Integer iid, HttpSession session){
-        Integer uid =Integer.parseInt(session.getAttribute("userId").toString());
-        Cart cart = cartService.findByUidAndIid(uid,iid);
+    public String addToCart(@PathVariable(required = false) Integer iid, HttpSession session) {
+        Integer uid = Integer.parseInt(session.getAttribute("userId").toString());
+        Cart cart = cartService.findByUidAndIid(uid, iid);
         System.out.println(iid);
-        if(cart!=null){
-            cart.setNum(cart.getNum()+1);
+        if (cart != null) {
+            cart.setNum(cart.getNum() + 1);
             cartService.saveOrUpdateCart(cart);
-        }
-        else {
+        } else {
             Item item = itemService.findById(iid);
-            Cart cart1 = new Cart(iid,uid,1,item.getItemname(),item.getPrice(),item.getPicturepath());
+            Cart cart1 = new Cart(iid, uid, 1, item.getItemname(), item.getPrice(), item.getPicturepath());
             cartService.saveOrUpdateCart(cart1);
         }
         return "success";
@@ -40,15 +39,14 @@ public class CartController {
 
     @ResponseBody
     @PostMapping("/setCartItemNum{iid},{num}")
-    public String setCartItemNum(@PathVariable(required = true)Integer iid, @PathVariable(required = true)Integer num, HttpSession session){
-        Integer uid =Integer.parseInt(session.getAttribute("userId").toString());
-        Cart cart = cartService.findByUidAndIid(uid,iid);
-        System.out.println(iid+','+num);
-        if(cart!=null){
+    public String setCartItemNum(@PathVariable(required = true) Integer iid, @PathVariable(required = true) Integer num, HttpSession session) {
+        Integer uid = Integer.parseInt(session.getAttribute("userId").toString());
+        Cart cart = cartService.findByUidAndIid(uid, iid);
+        System.out.println(iid + ',' + num);
+        if (cart != null) {
             cart.setNum(num);
             cartService.saveOrUpdateCart(cart);
-        }
-        else{
+        } else {
 
         }
         return "success";
@@ -56,10 +54,10 @@ public class CartController {
 
     @ResponseBody
     @PostMapping("/emptyCart")
-    public String emptyCart(HttpSession session){
-        Integer uid =Integer.parseInt(session.getAttribute("userId").toString());
+    public String emptyCart(HttpSession session) {
+        Integer uid = Integer.parseInt(session.getAttribute("userId").toString());
         cartService.deleteAllByUid(uid);
-        System.out.println("emptyCart"+uid);
+        System.out.println("emptyCart" + uid);
         return "success";
     }
 }

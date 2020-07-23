@@ -11,9 +11,9 @@ public class AdminInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        boolean flag =false;
-        User user=(User)request.getSession().getAttribute("user");
-        if(user.getAuthority().equals("administrator")){
+        boolean flag = false;
+        User user = (User) request.getSession().getAttribute("user");
+        if (user.getAuthority().equals("administrator")) {
             flag = true;
             return flag;
         }

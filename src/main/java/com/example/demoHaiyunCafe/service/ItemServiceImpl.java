@@ -13,7 +13,7 @@ import java.util.Comparator;
 import java.util.List;
 
 @Service
-public class ItemServiceImpl implements ItemService{
+public class ItemServiceImpl implements ItemService {
     @Autowired
     private ItemRepository itemRepository;
 
@@ -22,90 +22,84 @@ public class ItemServiceImpl implements ItemService{
 
     @Override
     @Transactional
-    public List<Item> findAll(){
+    public List<Item> findAll() {
         return itemRepository.findAll();
     }
 
     @Override
     @Transactional
-    public Item findById(Integer id){
-       return itemRepository.findById(id).get();
+    public Item findById(Integer id) {
+        return itemRepository.findById(id).get();
     }
-    
+
     @Override
     @Transactional
-    public Item findByItemname(String itemname){
+    public Item findByItemname(String itemname) {
         return itemRepository.findByItemname(itemname);
     }
 
     @Override
     @Transactional
-    public Integer findItemPopularity(Integer iid)
-    {
-        List<Order> orderList=orderRepository.findAllByIid(iid);
-        Integer popularity=0;
-        for(Order order:orderList)
-        {
-            popularity+=order.getItemnum();
+    public Integer findItemPopularity(Integer iid) {
+        List<Order> orderList = orderRepository.findAllByIid(iid);
+        Integer popularity = 0;
+        for (Order order : orderList) {
+            popularity += order.getItemnum();
         }
-    	return popularity;
+        return popularity;
     }
 
     @Override
     @Transactional
-    public List<Item> findTop5PopularItems()
-    {
-        List<Item> itemList=findAll();
-        for (Item i:itemList) {
+    public List<Item> findTop5PopularItems() {
+        List<Item> itemList = findAll();
+        for (Item i : itemList) {
             i.setPopularity(findItemPopularity(i.getId()));
         }
         itemList.sort(Comparator.comparing(Item::getPopularity).reversed());
-        List<Item> result=new ArrayList<>();
-        for(int i=0;i<5;i++)
-        {
-            if(i==itemList.size()) break;
+        List<Item> result = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            if (i == itemList.size()) break;
             result.add(itemList.get(i));
         }
         return result;
     }
-    
+
     @Override
     @Transactional
-    public Item saveOrUpdateItem(Item item){
+    public Item saveOrUpdateItem(Item item) {
 
-        try{
+        try {
             itemRepository.save(item);
-        }
-        catch (Exception e){
-            throw new RuntimeException("Add Item Error: "+e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("Add Item Error: " + e.getMessage());
         }
         return item;
     }
 
     @Override
     @Transactional
-    public void deleteById(Integer id){
+    public void deleteById(Integer id) {
         itemRepository.deleteById(id);
     }
 
 
-
     @Override
     @Transactional
-    public List<Item> findAllByType(String type){
+    public List<Item> findAllByType(String type) {
         return itemRepository.findAllByType(type);
     }
 
     @Override
     @Transactional
-    public List<Item> findAllByPrice(Integer price){
+    public List<Item> findAllByPrice(Integer price) {
         return itemRepository.findAllByPrice(price);
     }
 
     @Override
     @Transactional
-    public List<Item> findAllByItemname(String itemname){
+    public List<Item> findAllByItemname(String itemname) {
         return itemRepository.findAllByItemname(itemname);
     }
-    
+
 }

@@ -16,8 +16,10 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
     //private UserRepository userRepository;
+
     /**
      * 注册
+     *
      * @param user 参数封装
      * @return Result
      */
@@ -28,10 +30,10 @@ public class UserService {
         user.setAuthority("user");
         try {
             User existUser = userMapper.findUserByName(user.getUsername());
-            if(existUser != null){
+            if (existUser != null) {
                 //如果用户名已存在
                 result.setMsg("用户名已存在");
-            }else{
+            } else {
                 userMapper.regist(user);
                 //System.out.println(user.getId());
                 result.setMsg("注册成功");
@@ -44,8 +46,10 @@ public class UserService {
         }
         return result;
     }
+
     /**
      * 登录
+     *
      * @param user 用户名和密码
      * @return Result
      */
@@ -54,11 +58,10 @@ public class UserService {
         result.setSuccess(false);
         result.setDetail(null);
         try {
-            Long userId= userMapper.login(user);
-            if(userId == null){
+            Long userId = userMapper.login(user);
+            if (userId == null) {
                 result.setMsg("用户名或密码错误");
-            }
-            else{
+            } else {
                 result.setMsg("登录成功");
                 result.setSuccess(true);
                 user.setId(userId);
@@ -76,26 +79,33 @@ public class UserService {
      * @return Result
      */
     @Transactional
-    public List<User> findAll(){
+    public List<User> findAll() {
         return userMapper.findAll();
     }
 
 
     @Transactional
-    public User findById(Long id){ return userMapper.findUserById(id); };
+    public User findById(Long id) {
+        return userMapper.findUserById(id);
+    }
+
+    ;
 
     @Transactional
-    public User saveOrUpdateUser(User user){
+    public User saveOrUpdateUser(User user) {
 
-        try{
+        try {
             userMapper.update(user);
-        }
-        catch (Exception e){
-            throw new RuntimeException("Add user Error: "+e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("Add user Error: " + e.getMessage());
         }
         return user;
     }
 
     @Transactional
-    public void deleteById(Long id){ userMapper.deleteById(id); };
+    public void deleteById(Long id) {
+        userMapper.deleteById(id);
+    }
+
+    ;
 }

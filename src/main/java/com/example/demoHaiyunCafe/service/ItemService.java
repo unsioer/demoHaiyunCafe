@@ -11,13 +11,13 @@ public interface ItemService {
     Integer findItemPopularity(Integer iid);
 
     List<Item> findTop5PopularItems();
-    
+
     Item saveOrUpdateItem(Item item);
 
     void deleteById(Integer id);
 
     Item findByItemname(String itemname);
-    
+
     Item findById(Integer id);
 
     List<Item> findAllByItemname(String itemname);
@@ -25,5 +25,5 @@ public interface ItemService {
     List<Item> findAllByType(String type);
 
     List<Item> findAllByPrice(Integer price);
-    
+
 }

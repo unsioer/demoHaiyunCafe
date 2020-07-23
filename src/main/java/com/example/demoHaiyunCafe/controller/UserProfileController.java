@@ -23,53 +23,54 @@ public class UserProfileController {
 
     @Autowired
     private CartServiceImpl cartService;
+
     @GetMapping("/profileEdit")
-    public ModelAndView userEditGet(Model model, User user, HttpSession session, HttpServletRequest request){
+    public ModelAndView userEditGet(Model model, User user, HttpSession session, HttpServletRequest request) {
         //购物车
-        Integer uid =Integer.parseInt(session.getAttribute("userId").toString());
+        Integer uid = Integer.parseInt(session.getAttribute("userId").toString());
         System.out.println(uid);
         int totalPrice = 0;
         int num = 0;
         List<Cart> cartList = cartService.findAllByUid(uid);
-        for(Cart c : cartList){
-            totalPrice+= c.getNum()*c.getPrice();
-            num+=c.getNum();
+        for (Cart c : cartList) {
+            totalPrice += c.getNum() * c.getPrice();
+            num += c.getNum();
         }
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
-        model.addAttribute("totalPrice","￥"+decimalFormat.format(totalPrice));
-        model.addAttribute("num",num);
+        model.addAttribute("totalPrice", "￥" + decimalFormat.format(totalPrice));
+        model.addAttribute("num", num);
 
-        user=(User)request.getSession().getAttribute("user");
-        if(user.getId()!=null){
+        user = (User) request.getSession().getAttribute("user");
+        if (user.getId() != null) {
             User user1 = userService.findById(user.getId());
-            if(user1!=null){
+            if (user1 != null) {
 
             }
-            model.addAttribute("user",user1);
+            model.addAttribute("user", user1);
         }
-        return new ModelAndView("user/profileEdit","userEditModel",model );
+        return new ModelAndView("user/profileEdit", "userEditModel", model);
     }
 
     @PostMapping("/profileEdit")
-    public ModelAndView userEditPost(Model model, HttpSession session,  User user){
+    public ModelAndView userEditPost(Model model, HttpSession session, User user) {
         //购物车
-        Integer uid =Integer.parseInt(session.getAttribute("userId").toString());
+        Integer uid = Integer.parseInt(session.getAttribute("userId").toString());
         System.out.println(uid);
         int totalPrice = 0;
         int num = 0;
         List<Cart> cartList = cartService.findAllByUid(uid);
-        for(Cart c : cartList){
-            totalPrice+= c.getNum()*c.getPrice();
-            num+=c.getNum();
+        for (Cart c : cartList) {
+            totalPrice += c.getNum() * c.getPrice();
+            num += c.getNum();
         }
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
-        model.addAttribute("totalPrice","￥"+decimalFormat.format(totalPrice));
-        model.addAttribute("num",num);
+        model.addAttribute("totalPrice", "￥" + decimalFormat.format(totalPrice));
+        model.addAttribute("num", num);
 
         System.out.println(user.getId());
         userService.saveOrUpdateUser(user);
-        return new ModelAndView("user/profileEdit","userEditModel",model );
+        return new ModelAndView("user/profileEdit", "userEditModel", model);
     }
 }

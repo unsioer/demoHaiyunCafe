@@ -18,7 +18,7 @@ public class Cart {
     @Column(nullable = false)
     private Integer num;
 
-    @Column(nullable =  false)
+    @Column(nullable = false)
     private String itemName;
 
     @Column(nullable = false)
@@ -56,7 +56,7 @@ public class Cart {
         return id;
     }
 
-    public Cart(){
+    public Cart() {
 
     }
 

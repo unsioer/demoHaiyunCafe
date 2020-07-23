@@ -9,9 +9,9 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false,length = 20)
+    @Column(nullable = false, length = 20)
     private String itemname;
-    @Column(nullable = false,length = 20)
+    @Column(nullable = false, length = 20)
     private String type;
     @Column(nullable = false)
     private Integer number;
@@ -62,11 +62,17 @@ public class Item {
         this.price = price;
     }
 
-    public String getPicturepath() {return picturepath;}
+    public String getPicturepath() {
+        return picturepath;
+    }
 
-    public void setPicturepath(String picturepath) {this.picturepath=picturepath;}
+    public void setPicturepath(String picturepath) {
+        this.picturepath = picturepath;
+    }
 
-    public Integer getPopularity() { return popularity; }
+    public Integer getPopularity() {
+        return popularity;
+    }
 
     public void setPopularity(Integer popularity) {
         this.popularity = popularity;
@@ -79,7 +85,7 @@ public class Item {
         this.price = price;
     }
 
-    public Item(){
+    public Item() {
 
     }
 

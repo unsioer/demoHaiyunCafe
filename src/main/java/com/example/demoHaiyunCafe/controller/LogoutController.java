@@ -15,8 +15,7 @@ public class LogoutController {
     private UserService userService;
 
     @GetMapping(value = "/logout")
-    public String loginGet(User user, Map<String, Object> map, HttpSession session)
-    {
+    public String loginGet(User user, Map<String, Object> map, HttpSession session) {
         session.invalidate();
         return "/login";
     }

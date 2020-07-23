@@ -17,29 +17,26 @@ public class LoginController {
     private UserService userService;
 
     @GetMapping(value = "/login")
-    public String login()
-    {
+    public String login() {
         return "login";
     }
 
 
     @PostMapping(value = "/login")
-    public String login(User user, String identify ,Map<String, Object> map, HttpSession session) {
+    public String login(User user, String identify, Map<String, Object> map, HttpSession session) {
         Result result = userService.login(user);
 
-        if (result.isSuccess() && identify.equals("administrator")&& user.getAuthority().equals("administrator")) {
+        if (result.isSuccess() && identify.equals("administrator") && user.getAuthority().equals("administrator")) {
             session.setAttribute("loginUser", user.getUsername());
-            session.setAttribute("userId",user.getId());
-            session.setAttribute("user",user);
+            session.setAttribute("userId", user.getId());
+            session.setAttribute("user", user);
             return "redirect:/dashboard";
-        }
-        else if(result.isSuccess()&& identify.equals("user") && user.getAuthority().equals("user")){
+        } else if (result.isSuccess() && identify.equals("user") && user.getAuthority().equals("user")) {
             session.setAttribute("loginUser", user.getUsername());
-            session.setAttribute("userId",user.getId());
-            session.setAttribute("user",user);
+            session.setAttribute("userId", user.getId());
+            session.setAttribute("user", user);
             return "redirect:/index";
-        }
-        else {
+        } else {
             map.put("msg", "用户名或密码错误");
             return "login";
         }

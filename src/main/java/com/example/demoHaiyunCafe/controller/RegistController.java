@@ -16,15 +16,13 @@ public class RegistController {
     private UserService userService;
 
     @PostMapping(value = "/regist")
-    public String login(User user, Map<String,Object> map, HttpSession session)
-    {
-        Result result= userService.regist(user);
-        if(result.isSuccess()){
-            session.setAttribute("loginUser",user.getUsername());
+    public String login(User user, Map<String, Object> map, HttpSession session) {
+        Result result = userService.regist(user);
+        if (result.isSuccess()) {
+            session.setAttribute("loginUser", user.getUsername());
             return "redirect:/login.html";
-        }
-        else{
-            map.put("msg",result.getMsg());
+        } else {
+            map.put("msg", result.getMsg());
             return "regist";
         }
     }
