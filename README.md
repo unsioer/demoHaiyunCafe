@@ -18,9 +18,8 @@ mysql -u root -p --default-character-set=utf8mb4
 
 ## Structure 结构
 ### `/src/main/java/com.example.demoHaiyunCafe`下
-- `Bean`：定义数据库实体等
-- `Config`：MVC配置
-- `Interceptor`：页面拦截（检查登录状态和用户权限）
+- `Domain`：定义数据库实体等
+- `Config`：MVC配置，页面拦截（检查登录状态和用户权限）
 - `Controller`：页面具体控制
 - `Service`：相关服务方法
 - `Mapper`：数据库直接操作相关
@@ -30,7 +29,7 @@ mysql -u root -p --default-character-set=utf8mb4
 ### Entities 实体
 - User 用户
 - Menu 菜单
-
-（待续）
+- Cart 购物车
+- Userorder 订单
 
 

@@ -132,10 +132,10 @@
                                 <div class="pagelist">
                                     <p>当前<span th:text="${pageInfo.getNumber()} + 1"></span>页,总<span th:text="${pageInfo.totalPages}"></span>页
                                         　　　　　　　　　　　　　　　　　共<span th:text="${pageInfo.totalElements}"></span>条记录
-                                        <a th:href="@{/itemManage}">首页</a>
-                                        <a th:href="@{/itemManage(pageNum = ${pageInfo.hasPrevious()} ? ${pageInfo.getNumber() } : 1)}">上一页</a>
-                                        <a th:href="@{/itemManage(pageNum = ${pageInfo.hasNext()} ? ${pageInfo.getNumber()} + 2 : ${pageInfo.totalPages})}">下一页</a>
-                                        <a th:href="@{/itemManage(pageNum = ${pageInfo.totalPages})}">尾页</a></p>
+                                        <a th:href="@{/itemManage(itemname=${item.itemname},type = ${item.type},price=${item.price})}">首页</a>
+                                        <a th:href="@{/itemManage(pageNum = ${pageInfo.hasPrevious()} ? ${pageInfo.getNumber() } : 1,itemname=${item.itemname},type = ${item.type},price=${item.price})}">上一页</a>
+                                        <a th:href="@{/itemManage(pageNum = ${pageInfo.hasNext()} ? ${pageInfo.getNumber()} + 2 : ${pageInfo.totalPages},itemname=${item.itemname},type = ${item.type},price=${item.price})}">下一页</a>
+                                        <a th:href="@{/itemManage(pageNum = ${pageInfo.totalPages},itemname=${item.itemname},type = ${item.type},price=${item.price})}">尾页</a></p>
                                 </div>
                             </div>
                         </div>
