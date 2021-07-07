@@ -68,19 +68,7 @@ $(document).ready(function () {
         railOpacity: 0.4,
         wheelStep: 10
     });
-
-    // Open close small chat
-    $('.open-small-chat').click(function () {
-        $(this).children().toggleClass('fa-comments').toggleClass('fa-remove');
-        $('.small-chat-box').toggleClass('active');
-    });
-
-    // Initialize slimscroll for small chat
-    $('.small-chat-box .content').slimScroll({
-        height: '234px',
-        railOpacity: 0.4
-    });
-
+    
     // Small todo handler
     $('.check-link').click(function () {
         var button = $(this).find('i');
@@ -89,13 +77,6 @@ $(document).ready(function () {
         label.toggleClass('todo-completed');
         return false;
     });
-
-    // Append config box / Only for demo purpose
-    // Uncomment on server mode to enable XHR calls
-    //$.get("skin-config.html", function (data) {
-    //    if (!$('body').hasClass('no-skin-config'))
-    //        $('body').append(data);
-    //});
 
     // Minimalize menu
     $('.navbar-minimalize').click(function () {
